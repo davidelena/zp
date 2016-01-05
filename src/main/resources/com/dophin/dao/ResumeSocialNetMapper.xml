@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dophin.dao.ResumeSocialNetDAO">
+
+	<resultMap type="ResumeSocialNetDTO" id="resumeSocialNetMap">
+		<id property="id" column="id" />
+		<result property="resumeId" column="resume_id" />
+		<result property="account" column="account" />
+		<result property="url" column="url" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<insert id="insertResumeSocialNet" parameterType="ResumeSocialNetDTO"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into resume_social_net
+		(resume_id, account, url,
+		create_time, update_time, status) values
+		(#{resumeId}, #{account}, #{url}, now(), now(), 1)
+	</insert>
+
+
+	<!-- <insert id="batchInsertResumeSocialNet" parameterType="List" useGeneratedKeys="true"> 
+		insert into resume_social_net (id, resume_id, account, url, create_time, 
+		update_time, status) values <foreach collection="list" item="item" index="index" 
+		separator=","> (#{item.id}, #{item.resumeId}, #{item.account}, #{item.url}, 
+		now(), now(), 1) </foreach> </insert> -->
+
+	<update id="updateResumeSocialNet" parameterType="ResumeSocialNetDTO">
+		update
+		resume_social_net set resume_id=#{resumeId}, account=#{account},
+		url=#{url}, update_time=now() where status>0 and id=#{id}
+	</update>
+
+	<update id="batchUpdateResumeSocialNet" parameterType="list">
+		<foreach collection="list" item="item" index="index"
+			separator=";">
+			update resume_social_net
+			<set>
+				resume_id=#{item.resumeId},
+				account=#{item.account},
+				url=#{item.url},
+			</set>
+			where status>0 and id = ${item.id}
+		</foreach>
+	</update>
+
+	<update id="deleteResumeSocialNet" parameterType="int">
+		update
+		resume_social_net set status=-1, update_time=now() where id=#{id} and
+		status>0
+	</update>
+
+	<update id="batchDeleteResumeSocialNet" parameterType="list">
+		update resume_social_net set status=-1, update_time=now() where
+		status>0 and id in
+		<foreach collection="list" item="item" index="index" open="("
+			close=")" separator=",">
+			#{item}
+		</foreach>
+	</update>
+
+	<select id="queryResumeSocialNet" parameterType="int"
+		resultMap="resumeSocialNetMap">
+		select id, resume_id, account, url, create_time,
+		update_time, status from resume_social_net where status>0 and id=#{id}
+	</select>
+
+	<select id="queryResumeSocialNets" parameterType="int"
+		resultMap="resumeSocialNetMap">
+		select id, resume_id, account, url, create_time,
+		update_time, status from resume_social_net where status>0 and
+		resume_id=#{resumeId}
+	</select>
+
+</mapper>

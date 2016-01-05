@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dophin.dao.ResumeEducationExpDAO">
+
+	<resultMap type="ResumeEducationExpDTO" id="resumeEducationExpMap">
+		<id property="id" column="id" />
+		<result property="resumeId" column="resume_id" />
+		<result property="diploma" column="diploma" />
+		<result property="school" column="school" />
+		<result property="major" column="major" />
+		<result property="majorType" column="major_type" />
+		<result property="scoreTop" column="score_top" />
+		<result property="academicStarts" column="academic_starts" />
+		<result property="graduationTime" column="graduation_time" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="schoolDesc" column="school_desc" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<insert id="insertResumeEducationExp" parameterType="ResumeEducationExpDTO"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into resume_education_exp
+		(resume_id,
+		diploma, school, major, major_type,
+		score_top,
+		academic_starts, graduation_time, create_time, update_time,
+		status)
+		values (#{resumeId}, #{diploma}, #{school},
+		#{major},
+		#{majorType}, #{scoreTop},
+		#{academicStarts},
+		#{graduationTime}, now(),
+		now(), 1)
+	</insert>
+
+	<update id="updateResumeEducationExp" parameterType="ResumeEducationExpDTO">
+		update
+		resume_education_exp set resume_id=#{resumeId},
+		diploma=#{diploma}, school=#{school}, major=#{major},
+		major_type=#{majorType}, score_top=#{scoreTop},
+		academic_starts=#{academicStarts},
+		graduation_time=#{graduationTime},
+		update_time=now(), status=#{status}
+		where status>0 and id=#{id}
+	</update>
+
+	<update id="deleteResumeEducationExp" parameterType="int">
+		update
+		resume_education_exp
+		set status=-1, update_time=now() where id=#{id}
+		and status>0
+	</update>
+
+	<select id="queryResumeEducationExp" parameterType="int"
+		resultMap="resumeEducationExpMap">
+		select re.id, re.resume_id, re.diploma, re.school,
+		re.major, re.major_type, re.score_top, re.academic_starts,
+		re.graduation_time,
+		re.create_time, re.update_time from
+		resume_education_exp re
+		where re.status>0 and re.id=#{id}
+	</select>
+
+	<select id="queryResumeEducationExps" parameterType="int"
+		resultMap="resumeEducationExpMap">
+		select re.id, re.resume_id, re.diploma, re.school,
+		re.major, re.major_type, re.score_top, re.academic_starts,
+		re.graduation_time,
+		re.create_time, re.update_time from
+		resume_education_exp re
+		where re.status>0 and re.resume_id=#{resumeId}
+	</select>
+
+	<resultMap type="Integer" id="resumeIdsMap">
+		<result property="resumeId" column="resume_id" />
+	</resultMap>
+
+	<select id="queryResumeIdByMajorType" parameterType="Map"
+		resultMap="resumeIdsMap">
+		select distinct resume_id from resume_education_exp
+		where status>0
+		<if test="resumeIds!=null and resumeIds!=''">
+			and resume_id in (${resumeIds})
+		</if>
+		<if test="majorType!=null">
+			and major_type=#{majorType}
+		</if>
+	</select>
+
+</mapper>

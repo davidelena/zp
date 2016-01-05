@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dophin.dao.PartnerBindingDAO">
+
+	<resultMap type="PartnerBindingDTO" id="partnerBindingMap">
+		<id property="id" column="id" />
+		<result property="memberId" column="member_id" />
+		<result property="partnerId" column="partner_id" />
+		<result property="accessToken" column="access_token" />
+		<result property="tokenExpire" column="token_expire" />
+		<result property="isValid" column="isValid" />
+		<result property="partnerType" column="partner_type" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<insert id="insertPartnerBindingInfo" parameterType="PartnerBindingDTO"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into partner_binding
+		(member_id, partner_id, access_token, token_expire, isValid,
+		partner_type, create_time, update_time, status)
+		values (#{memberId},
+		#{partnerId}, #{accessToken}, #{tokenExpire}, #{isValid},
+		#{partnerType}, #{createTime}, #{updateTime}, #{status})
+	</insert>
+
+	<update id="updatePartnerBindingInfo" parameterType="PartnerBindingDTO">
+		update
+		partner_binding set member_id=#{memberId}, partner_id=#{partnerId},
+		access_token=#{accessToken}, token_expire=#{tokenExpire},
+		isValid=#{isValid},
+		partner_type=#{partnerType}, update_time=now()
+		where status>0 and (member_id=#{memberId} or id=#{id})
+	</update>
+
+	<update id="deletePartnerBindingInfo" parameterType="Map">
+		update
+		partner_binding set status=-1, update_time=now() where status>0 and 
+		(member_id=#{memberId} or id=#{id})
+	</update>
+
+	<select id="queryPartnerBindingInfo" parameterType="Map"
+		resultMap="partnerBindingMap">
+		select id, member_id, partner_id, access_token,
+		token_expire, isValid,
+		partner_type, create_time, update_time, status
+		from partner_binding
+		where status>0 and (member_id=#{memberId} or
+		id=#{id})
+	</select>
+
+</mapper>

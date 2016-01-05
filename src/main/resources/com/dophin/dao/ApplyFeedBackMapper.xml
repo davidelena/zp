@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dophin.dao.ApplyFeedBackDAO">
+
+	<resultMap type="ApplyFeedBackDTO" id="applyFeedBackMap">
+		<result property="recruitId" column="recruit_id" />
+		<result property="positionName" column="position_name" />
+		<result property="companyName" column="company_name" />
+		<result property="resumeId" column="resume_id" />
+		<result property="resumeName" column="resume_name" />
+		<result property="feedStatus" column="feed_status" />
+	</resultMap>
+
+	<select id="queryApplyFeedBackDTOs" parameterType="Map"
+		resultMap="applyFeedBackMap">
+		select mr.recruit_id, rc.position_name,
+		cp.name as company_name,
+		mr.resume_id, rs.resume_name, mr.feed_status
+		from member_recruit mr
+		inner join recruit_info rc on mr.recruit_id = rc.id
+		inner join
+		company_info cp on rc.company_id = cp.id
+		inner join resume_info rs on
+		mr.resume_id =rs.id
+		where mr.status>0
+		<if test="memberId!=null">
+			and mr.member_id = #{memberId}
+		</if>
+		<if test="feedStatusStr!=null">
+			and mr.feed_status in (${feedStatusStr})
+		</if>
+	</select>
+
+</mapper>

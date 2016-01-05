@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dophin.dao.ResumeSpecialtySkillDAO">
+
+	<resultMap type="ResumeSpecialtySkillDTO" id="resumeSpeicaltySkillMap">
+		<id property="id" column="id" />
+		<result property="resumeId" column="resume_id" />
+		<result property="enLangSkill" column="en_lang_skill" />
+		<result property="otherLangSkill" column="other_lang_skill" />
+		<result property="computerSkill" column="computer_skill" />
+		<result property="certificate" column="certificate" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<insert id="insertResumeSpecialtySkill" parameterType="ResumeSpecialtySkillDTO"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into resume_specialty_skill
+		(resume_id, en_lang_skill, other_lang_skill,
+		computer_skill,
+		certificate,
+		create_time, update_time, status) values
+		(#{resumeId},
+		#{enLangSkill},
+		#{otherLangSkill}, #{computerSkill}, #{certificate},
+		now(), now(),
+		1)
+	</insert>
+
+	<update id="updateResumeSpecialtySkill" parameterType="ResumeSpecialtySkillDTO">
+		update
+		resume_specialty_skill set resume_id=#{resumeId},
+		en_lang_skill=#{enLangSkill},
+		other_lang_skill=#{otherLangSkill},
+		computer_skill=#{computerSkill}, certificate=#{certificate},
+		update_time=now() where status>0
+		and id=#{id}
+	</update>
+
+	<update id="deleteResumeSpecialtySkill" parameterType="int">
+		update
+		resume_specialty_skill set status=-1, update_time=now() where id=#{id}
+		and
+		status>0
+	</update>
+
+	<select id="queryResumeSpecialtySkill" parameterType="int"
+		resultMap="resumeSpeicaltySkillMap">
+		select id, resume_id, en_lang_skill, other_lang_skill,
+		computer_skill, certificate,
+		create_time, update_time, status from
+		resume_specialty_skill where status>0 and id=#{id}
+	</select>
+
+	<select id="queryResumeSpecialtySkillByResumeId" parameterType="int"
+		resultMap="resumeSpeicaltySkillMap">
+		select id, resume_id, en_lang_skill, other_lang_skill,
+		computer_skill, certificate,
+		create_time, update_time, status from
+		resume_specialty_skill where status>0 and resume_id=#{resumeId}
+	</select>
+
+</mapper>

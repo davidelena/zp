@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dophin.dao.ResumePrizeInfoDAO">
+
+	<resultMap type="ResumePrizeInfoDTO" id="resumePrizeInfoMap">
+		<id property="id" column="id" />
+		<result property="resumeId" column="resume_id" />
+		<result property="prizeName" column="prize_name" />
+		<result property="prizeLevel" column="prize_level" />
+		<result property="gainTime" column="gain_time" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<insert id="insertResumePrizeInfo" parameterType="ResumePrizeInfoDTO"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into resume_prize_info
+		(resume_id, prize_name, prize_level, gain_time, create_time,
+		update_time, status) values
+		(#{resumeId}, #{prizeName}, #{prizeLevel}, #{gainTime},
+		now(), now(), 1)
+	</insert>
+
+	<update id="updateResumePrizeInfo" parameterType="ResumePrizeInfoDTO">
+		update
+		resume_prize_info set resume_id=#{resumeId}, prize_name=#{prizeName},
+		prize_level=#{prizeLevel}, gain_time=#{gainTime}, update_time=now() where
+		status>0 and id=#{id}
+	</update>
+
+	<update id="deleteResumePrizeInfo" parameterType="int">
+		update
+		resume_prize_info set status=-1, update_time=now() where id=#{id} and
+		status>0
+	</update>
+
+	<select id="queryResumePrizeInfo" parameterType="int"
+		resultMap="resumePrizeInfoMap">
+		select id, resume_id, prize_name, prize_level, gain_time,
+		create_time,
+		update_time, status from resume_prize_info where status>0
+		and id=#{id}
+	</select>
+
+	<select id="queryResumePrizeInfos" parameterType="int"
+		resultMap="resumePrizeInfoMap">
+		select id, resume_id, prize_name, prize_level, gain_time, create_time,
+		update_time, status from resume_prize_info where status>0 and
+		resume_id=#{resumeId}
+	</select>
+
+</mapper>

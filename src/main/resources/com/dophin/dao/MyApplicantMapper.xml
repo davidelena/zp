@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dophin.dao.MyApplicantDAO">
+
+	<resultMap type="MyApplicantDTO" id="myApplicantMap">
+		<result property="id" column="id" />
+		<result property="memberId" column="member_id" />
+		<result property="memberName" column="member_name" />
+		<result property="recruitId" column="recruit_id" />
+		<result property="recruitName" column="recruit_name" />
+		<result property="deliverTime" column="delivery_time" />
+		<result property="resumeId" column="resume_id" />
+		<result property="resumeAvatar" column="avatar" />
+		<result property="workExpCount" column="work_exp_count" />
+		<result property="feedStatus" column="feed_status" />
+		<result property="schoolId" column="school_id" />
+		<result property="schoolName" column="school_name" />
+		<result property="majorName" column="major" />
+		<result property="diploma" column="diploma" />
+		<result property="graduationYear" column="graduation_year" />
+		<result property="sex" column="sex" />
+	</resultMap>
+
+	<select id="queryMyApplicantInfos" parameterType="Map"
+		resultMap="myApplicantMap">
+		select t.id, t.member_id, t.member_name, t.recruit_id, t.recruit_name,
+		t.delivery_time,
+		t.resume_id, t.avatar, t.work_exp_count,
+		t.feed_status, t.school_id, t.school_name, t.major,
+		t.school_tag,
+		t.school_type, t.diploma,
+		t.graduation_year, t.sex from (
+		select mr.id,
+		mr.member_id, m.name as member_name, mr.recruit_id, u.id as school_id,
+		u.name as school_name, u.tag as
+		school_tag, u.type as school_type,
+		rc.position_name as recruit_name,
+		mr.create_time as
+		delivery_time,
+		r.diploma, r.graduation_year, r.sex, r.avatar, r.major,
+		mr.resume_id,
+		(case when
+		rwe.work_exp_count is null then 0 else
+		rwe.work_exp_count
+		END)
+		as
+		work_exp_count, mr.feed_status, mr.status
+		from
+		member_recruit mr
+		inner
+		join
+		member_info m on mr.member_id =
+		m.member_id
+		inner join
+		resume_info r
+		on
+		mr.resume_id = r.id
+		inner join
+		recruit_info rc on rc.id =
+		mr.recruit_id
+		INNER JOIN university u on
+		m.school_id = u.id
+		left join
+		(select resume_id,
+		count(0) as
+		work_exp_count
+		from
+		resume_work_exp group
+		by resume_id) rwe
+		on
+		mr.resume_id =
+		rwe.resume_id
+		where mr.status>0 and rc.status>0 and
+		m.source=1) t
+		where t.status>0
+		<if test="feedStatus>0">
+			and t.feed_status=#{feedStatus}
+		</if>
+		<if test="memberId!=''">
+			and t.recruit_id in (select id from recruit_info where
+			member_id=#{memberId})
+		</if>
+		<if test="recruitId>0">
+			and t.recruit_id=#{recruitId}
+		</if>
+		<if test="schoolTag!=null and schoolTag!=''">
+			and t.school_tag like '%${schoolTag}%'
+		</if>
+		<if test="schoolType!=null and schoolType!=''">
+			and t.school_type in (${schoolType})
+		</if>
+		<if test="diploma!=null and diploma!=''">
+			and t.diploma in (${diploma})
+		</if>
+		<if test="graduationYear>0">
+			and t.graduation_year=#{graduationYear}
+		</if>
+		<if test="sex>0">
+			and t.sex=#{sex}
+		</if>
+		<choose>
+			<when test="workExpCount>0">
+				and t.work_exp_count>0
+			</when>
+			<otherwise>
+				<if test="workExpCount==0">
+					and t.work_exp_count=0
+				</if>
+			</otherwise>
+		</choose>
+		order by t.member_id desc
+		<if test="(start!=null and start>=0) and (size!=null and size>=0)">
+			limit ${start}, #{size}
+		</if>
+	</select>
+
+	<select id="queryMyApplicantInfosCount" parameterType="Map"
+		resultType="int">
+		select count(0) as count from (
+		select
+		mr.member_id, m.name as
+		member_name, mr.recruit_id, u.tag as
+		school_tag, u.type as school_type,
+		rc.position_name as recruit_name,
+		mr.create_time as
+		delivery_time,
+		r.diploma, r.graduation_year, r.sex,
+		mr.resume_id,
+		(case when
+		rwe.work_exp_count is null then 0 else
+		rwe.work_exp_count END)
+		as
+		work_exp_count, mr.feed_status, mr.status
+		from
+		member_recruit mr
+		inner
+		join
+		member_info m on mr.member_id =
+		m.member_id
+		inner join resume_info r
+		on
+		mr.resume_id = r.id
+		inner join
+		recruit_info rc on rc.id =
+		mr.recruit_id
+		INNER JOIN university u on
+		m.school_id = u.id
+		left join
+		(select resume_id,
+		count(0) as
+		work_exp_count
+		from
+		resume_work_exp group
+		by resume_id) rwe
+		on
+		mr.resume_id =
+		rwe.resume_id
+		where mr.status>0 and rc.status>0 and
+		m.source=1) t
+		where t.status>0
+		<if test="feedStatus>0">
+			and t.feed_status=#{feedStatus}
+		</if>
+		<if test="memberId!=''">
+			and t.recruit_id in (select id from recruit_info where
+			member_id=#{memberId})
+		</if>
+		<if test="recruitId>0">
+			and t.recruit_id=#{recruitId}
+		</if>
+		<if test="schoolTag!=null and schoolTag!=''">
+			and t.school_tag like '%${schoolType}%'
+		</if>
+		<if test="schoolType!=null and schoolType!=''">
+			and t.school_type in (${schoolType})
+		</if>
+		<if test="diploma!=null and diploma!=''">
+			and t.diploma in (${diploma})
+		</if>
+		<if test="graduationYear>0">
+			and t.graduation_year=#{graduationYear}
+		</if>
+		<if test="sex>0">
+			and t.sex=#{sex}
+		</if>
+		<choose>
+			<when test="workExpCount>0">
+				and t.work_exp_count>0
+			</when>
+			<otherwise>
+				<if test="workExpCount==0">
+					and t.work_exp_count=0
+				</if>
+			</otherwise>
+		</choose>
+	</select>
+
+</mapper>

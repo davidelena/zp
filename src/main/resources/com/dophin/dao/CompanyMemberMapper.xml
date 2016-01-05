@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dophin.dao.CompanyMemberDAO">
+
+	<resultMap type="CompanyInfoDTO" id="campanyInfoMap">
+		<id property="id" column="id" />
+		<result property="memberId" column="member_id" />
+		<result property="name" column="name" />
+		<result property="industry" column="industry" />
+		<result property="headerQuartersId" column="headquarters_id" />
+		<result property="headerQuarters" column="headquarters" />
+		<result property="detailAdress" column="detailAdress" />
+		<result property="logo" column="logo" />
+		<result property="officialWebsite" column="official_website" />
+		<result property="scale" column="scale" />
+		<result property="synopsis" column="synopsis" />
+		<result property="product" column="product" />
+		<result property="achievements" column="achievements" />
+		<result property="wechat" column="wechat" />
+		<result property="weibo" column="weibo" />
+		<result property="seniorExecutiveDesc" column="senior_executive_desc" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<insert id="insertCompanyInfo" parameterType="CompanyInfoDTO"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into company_info
+		(member_id, name, industry, headquarters_id, headquarters, detailAddress, logo,
+		official_website,
+		scale, synopsis, product, achievements, wechat,
+		weibo,
+		senior_executive_desc, create_time, update_time,
+		status) values
+		(#{memberId}, #{name}, #{industry}, #{headerQuartersId},
+		#{headerQuarters}, #{detailAddress}, #{logo},
+		#{officialWebsite},
+		#{scale}, #{synopsis},
+		#{product}, #{achievements},
+		#{wechat}, #{weibo},
+		#{seniorExecutiveDesc}, now(), now(), 1)
+	</insert>
+
+	<update id="deleteCompanyInfo" parameterType="Map">
+		update company_info set status=-1, update_time=now() where status>0
+		<if test="id!=null">
+			and id=#{id}
+		</if>
+		<if test="memberId!=null">
+			and member_id=#{memberId}
+		</if>
+	</update>
+
+	<update id="updateCompanyInfo" parameterType="Map">
+		update company_info
+		set name=#{name}, name=#{name},
+		industry=#{industry}, headquarters_id=#{headerQuartersId},
+		headquarters=#{headerQuarters}, detailAddress=#{detailAddress}, logo=#{logo},
+		official_website=#{officialWebsite}, scale=#{scale},
+		synopsis=#{synopsis}, product=#{product},
+		achievements=#{achievements}, wechat=#{wechat},
+		weibo=#{weibo},
+		senior_executive_desc=#{seniorExecutiveDesc},
+		update_time=now()
+		where
+		status>0
+		<if test="id!=null">
+			and id=#{id}
+		</if>
+		<if test="memberId!=null">
+			and member_id=#{memberId}
+		</if>
+	</update>
+
+	<select id="queryCompanyInfo" parameterType="Map" resultMap="campanyInfoMap">
+		select id, member_id, name, industry, headquarters_id, headquarters, detailAddress,
+		logo,
+		official_website,
+		scale, synopsis, product, achievements, wechat,
+		weibo,
+		senior_executive_desc, create_time, update_time,
+		status from
+		company_info where
+		status>0
+		<if test="id!=null">
+			and id=#{id}
+		</if>
+		<if test="memberId!=null">
+			and member_id=#{memberId}
+		</if>
+	</select>
+
+</mapper>

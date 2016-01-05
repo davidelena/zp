@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dophin.dao.MemberDAO">
+
+	<resultMap type="MemberDTO" id="memberMap">
+		<id property="id" column="id" />
+		<result property="memberId" column="member_id" />
+		<result property="name" column="name" />
+		<result property="email" column="email" />
+		<result property="commonEmail" column="common_email" />
+		<result property="password" column="password" />
+		<result property="telephone" column="telephone" />
+		<result property="position" column="position" />
+		<result property="mobile" column="mobile" />
+		<result property="source" column="source" />
+		<result property="sex" column="sex" />
+		<result property="demand" column="demand" />
+		<result property="schoolId" column="school_id" />
+		<result property="isVerifyEmail" column="is_verify_email" />
+		<result property="isVerifyCellphone" column="is_verify_cellphone" />
+		<result property="areaCode" column="area_code" />
+		<result property="telephone" column="telephone" />
+		<result property="companyId" column="company_id" />
+		<result property="studentId" column="student_id" />
+		<result property="qq" column="qq" />
+		<result property="wechat" column="wechat" />
+		<result property="weibo" column="weibo" />
+		<result property="extension" column="extension" />
+		<result property="companyEmailSuffix" column="company_email_suffix" />
+		<result property="hasFillBasic" column="has_fill_basic" />
+		<result property="isFirst" column="is_first" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="status" column="status" />
+		<association property="universityDTO" javaType="UniversityDTO">
+			<result property="id" column="school_id" />
+			<result property="name" column="school" />
+			<result property="geoId" column="school_geo_id" />
+			<result property="geo" column="school_geo" />
+			<result property="tag" column="school_tag" />
+			<result property="type" column="school_type" />
+		</association>
+	</resultMap>
+
+	<insert id="insertMemberInfo" parameterType="MemberDTO"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into member_info(
+		member_id,
+		name,
+		email,
+		common_email,
+		password,
+		telephone,
+		mobile,
+		source,
+		demand,
+		sex,
+		school_id,
+		school,
+		is_verify_email,
+		is_verify_cellphone,
+		area_code,
+		company_id,
+		student_id,
+		qq,
+		wechat,
+		weibo,
+		extension,
+		company_email_suffix,
+		has_fill_basic,
+		is_first,
+		create_time,
+		update_time,
+		status
+		)
+		values(
+		#{memberId},
+		#{name},
+		#{email},
+		#{commonEmail},
+		#{password},
+		#{telephone},
+		#{mobile},
+		#{source},
+		#{demand},
+		#{sex},
+		#{schoolId},
+		#{school},
+		#{isVerifyEmail},
+		#{isVerifyCellphone},
+		#{areaCode},
+		#{companyId},
+		#{studentId},
+		#{qq},
+		#{wechat},
+		#{weibo},
+		#{extension},
+		#{companyEmailSuffix},
+		#{hasFillBasic},
+		#{isFirst},
+		now(),
+		now(),
+		1
+		)
+	</insert>
+
+	<update id="updateMemberInfo" parameterType="MemberDTO">
+		update member_info
+		set name=#{name}, email=#{email}, common_email=#{commonEmail},
+		password=#{password},
+		telephone=#{telephone},
+		sex=#{sex},
+		demand=#{demand},
+		mobile=#{mobile},
+		source=#{source},
+		position=#{position},
+		school_id=#{schoolId},
+		school=#{school},
+		is_verify_email=#{isVerifyEmail},
+		is_verify_cellphone=#{isVerifyCellphone},
+		area_code=#{areaCode},
+		company_id=#{companyId},
+		student_id=#{studentId},
+		qq=#{qq},
+		wechat=#{wechat},
+		weibo=#{weibo},
+		telephone=#{telephone},
+		demand=#{demand},
+		extension=#{extension},
+		company_email_suffix=#{companyEmailSuffix},
+		has_fill_basic=#{hasFillBasic},
+		is_first=#{isFirst},
+		update_time=now(),
+		status=#{status}
+		where
+		member_id=${memberId} and
+		status>0
+	</update>
+
+	<select id="queryMemberInfo" parameterType="Map" resultMap="memberMap">
+		<choose>
+			<when test="memberId!=null">
+				<include refid="queryMemberInfoByEmail" />
+			</when>
+			<when test="email!=null">
+				<include refid="queryMemberInfoByEmail" />
+			</when>
+			<otherwise>
+				<include refid="queryMemberInfoByMobile" />
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="queryMemberInfoByConditions" parameterType="Map"
+		resultMap="memberMap">
+		<include refid="queryMemberInfoByConditionsSql" />
+	</select>
+
+	<sql id="queryMemberInfoByConditionsSql">
+		select
+		m.id,
+		m.member_id,
+		m.name,
+		m.email,
+		m.common_email,
+		m.password,
+		m.telephone,
+		m.sex,
+		m.demand,
+		m.mobile,
+		m.source,
+		m.position,
+		m.school_id,
+		u.name
+		as school,
+		u.geo_id as school_geo_id,
+		u.geo as
+		school_geo,
+		u.tag as
+		school_tag,
+		u.type
+		as school_type,
+		m.is_verify_email,
+		m.is_verify_cellphone,
+		m.area_code,
+		m.company_id,
+		m.student_id,
+		m.qq,
+		m.wechat,
+		m.weibo,
+		m.extension,
+		m.company_email_suffix,
+		m.has_fill_basic,
+		m.is_first,
+		m.create_time,
+		m.update_time,
+		m.status from
+		member_info m left
+		join
+		university u on m.school_id = u.id
+		where m.status>0
+		<if test="source!=null">
+			and m.source=#{source}
+		</if>
+		<if test="memberId!=null">
+			and m.member_id=#{memberId}
+		</if>
+		<if test="memberIds!=null">
+			and m.member_id in (${memberIds});
+		</if>
+	</sql>
+
+	<sql id="queryMemberInfoByEmail">
+		select
+		m.id,
+		m.member_id,
+		m.name,
+		m.email,
+		m.common_email,
+		m.password,
+		m.telephone,
+		m.sex,
+		m.demand,
+		m.mobile,
+		m.source,
+		m.position,
+		m.school_id,
+		u.name
+		as school,
+		u.geo_id as school_geo_id,
+		u.geo as
+		school_geo,
+		u.tag as
+		school_tag,
+		u.type
+		as school_type,
+		m.is_verify_email,
+		m.is_verify_cellphone,
+		m.area_code,
+		m.company_id,
+		m.student_id,
+		m.qq,
+		m.wechat,
+		m.weibo,
+		m.extension,
+		m.company_email_suffix,
+		m.has_fill_basic,
+		m.is_first,
+		m.create_time,
+		m.update_time,
+		m.status from
+		member_info m left
+		join
+		university u on m.school_id = u.id
+		where m.status>0
+		<if test="source!=null">
+			and m.source=#{source}
+		</if>
+		and (m.member_id=#{memberId} or
+		m.email=#{email})
+
+	</sql>
+
+	<sql id="queryMemberInfoByMobile">
+		select
+		m.id,
+		m.member_id,
+		m.name,
+		m.email,
+		m.common_email,
+		m.password,
+		m.telephone,
+		m.sex,
+		m.demand,
+		m.mobile,
+		m.source,
+		m.position,
+		m.school_id,
+		u.name
+		as school,
+		u.geo_id as school_geo_id,
+		u.geo as
+		school_geo,
+		u.tag as
+		school_tag,
+		u.type as school_type,
+		m.is_verify_email,
+		m.is_verify_cellphone,
+		m.area_code,
+		m.company_id,
+		m.student_id,
+		m.qq,
+		m.wechat,
+		m.weibo,
+		m.telephone,
+		m.extension,
+		m.company_email_suffix,
+		m.has_fill_basic,
+		m.is_first,
+		m.create_time,
+		m.update_time,
+		m.status from
+		member_info
+		m left join
+		university u on m.school_id = u.id
+		where
+		m.status>0
+		<if test="source!=null">
+			and m.source=#{source}
+		</if>
+		and (m.member_id=#{memberId} or
+		m.mobile=#{mobile})
+	</sql>
+
+	<update id="deleteMemberInfo" parameterType="String">
+		update member_info
+		set status = -1 and update_time=now() where member_id=#{memberId}
+	</update>
+
+	<select id="isMemberExists" parameterType="Map" resultType="int">
+		select count(0) as count from member_info where status>0 and
+		source=#{source}
+		<if test="memberId!=null">
+			and member_id=#{memberId}
+		</if>
+		<if test="email!=null">
+			and email=#{email}
+		</if>
+		<if test="mobile!=null">
+			and mobile=#{mobile}
+		</if>
+		<if test="companyEmailSuffix!=null">
+			and company_email_suffix=#{companyEmailSuffix}
+		</if>
+	</select>
+
+	<select id="queryCompanyIdBySuffix" parameterType="Map"
+		resultMap="memberMap">
+		select company_id from member_info where status>0 and
+		source=#{source}
+		<if test="companyEmailSuffix!=null">
+			and company_email_suffix=#{companyEmailSuffix}
+		</if>
+	</select>
+
+</mapper>

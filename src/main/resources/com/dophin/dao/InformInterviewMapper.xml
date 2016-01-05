@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dophin.dao.InformInterviewDAO">
+
+	<resultMap type="InformInterviewDTO" id="informInterviewMap">
+		<id property="id" column="id" />
+		<result property="memberId" column="member_id" />
+		<result property="memberName" column="member_name" />
+		<result property="memberEmail" column="member_email" />
+		<result property="interviewDate" column="interview_date" />
+		<result property="detailTime" column="detail_time" />
+		<result property="interviewAddress" column="interview_address" />
+		<result property="contactPerson" column="contact_person" />
+		<result property="contactPhone" column="contact_phone" />
+		<result property="interviewContent" column="interview_content" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<insert id="insertInformInterviewInfo" parameterType="InformInterviewDTO"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into inform_interview
+		(member_id, member_name, member_email, interview_date, detail_time,
+		interview_address, contact_person, contact_phone, interview_content,
+		create_time, update_time, status)
+		values (#{memberId},
+		#{memberName},
+		#{memberEmail}, #{interviewDate},
+		#{detailTime}, #{interviewAddress},
+		#{contactPerson}, #{contactPhone},
+		#{interviewContent}, now(), now(),
+		1)
+	</insert>
+	
+	<update id="deleteInformInterviewInfo" parameterType="Map">
+		update inform_interview
+		set status = -1 and update_time=now() where status>0
+		<if test="id!=null">
+			and id=#{id}
+		</if>
+		<if test="memberId!=null">
+			and member_id=#{memberId}
+		</if>
+	</update>
+
+	<select id="queryInformInterviewInfo" parameterType="Map"
+		resultMap="informInterviewMap">
+		select id, member_id, member_name, member_email,
+		interview_date,
+		detail_time,
+		interview_address, contact_person,
+		contact_phone,
+		interview_content
+		from inform_interview where status>0
+		<if test="id!=null">
+			and id=#{id}
+		</if>
+		<if test="memberId!=null">
+			and member_id=#{memberId}
+		</if>
+	</select>
+
+</mapper>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dophin.dao.ConstantsDAO">
+
+	<resultMap type="UniversityDTO" id="universityMap">
+		<id property="id" column="id" />
+		<result property="geoId" column="geo_id" />
+		<result property="geo" column="title" />
+		<result property="name" column="name" />
+		<result property="abbreviation" column="abbreviation" />
+		<result property="tag" column="tag" />
+		<result property="type" column="type" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<select id="queryUniversity" parameterType="int" resultMap="universityMap">
+		select id, geo_id, geo, name, abbreviation, tag, type, status from
+		university where
+		status>0
+		and id=#{id}
+	</select>
+
+	<select id="queryUniversities" parameterType="Map" resultMap="universityMap">
+		select id, geo_id, geo,
+		name, abbreviation, tag, type, status from university where status>0
+		<if test="geoId!=null">
+			and geo_id=#{geoId}
+		</if>
+		order by id asc
+	</select>
+
+	<resultMap type="GeoAreaDTO" id="geoAreaMap">
+		<id property="id" column="id" />
+		<result property="parentId" column="parent_id" />
+		<result property="name" column="name" />
+		<result property="isHotCity" column="is_hot_city" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<select id="queryGeoArea" parameterType="int" resultMap="geoAreaMap">
+		select
+		id, parent_id, name, is_hot_city, status from geo_area where status>0
+		and id=#{id}
+	</select>
+
+	<select id="queryGeoAreas" parameterType="Map" resultMap="geoAreaMap">
+		select
+		id, parent_id, name,
+		is_hot_city, status from geo_area where
+		status>0
+		<if test="parentId!=null">
+			and parent_id=#{parentId}
+		</if>
+		<if test="cityIds!=null">
+			and id in (${cityIds})
+		</if>
+		<if test="isHotCity!=null">
+			and is_hot_city = #{isHotCity}
+		</if>
+		order by id asc
+	</select>
+
+	<resultMap type="IndustryDTO" id="industryMap">
+		<id property="id" column="id" />
+		<result property="parentId" column="parent_id" />
+		<result property="name" column="name" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<select id="queryIndustry" parameterType="int" resultMap="industryMap">
+		select
+		id, parent_id, name, status from industry where status>0
+		and id=#{id}
+	</select>
+
+	<select id="queryIndustries" resultMap="industryMap">
+		select id, parent_id,
+		name,
+		status from industry where status>0
+		<if test="parentId!=null">
+			and parent_id=#{parentId}
+		</if>
+		<if test="industryIds!=null">
+			and id in (${industryIds})
+		</if>
+		order by id asc
+	</select>
+
+	<resultMap type="PositionTypeDTO" id="positionTypeMap">
+		<id property="id" column="id" />
+		<result property="parentId" column="parent_id" />
+		<result property="subParentId" column="sub_parent_id" />
+		<result property="name" column="name" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<select id="queryPositionType" parameterType="int" resultMap="positionTypeMap">
+		select
+		id, parent_id, sub_parent_id, name, status from position_type
+		where status>0
+		and id=#{id}
+	</select>
+
+	<select id="queryPositionTypes" resultMap="positionTypeMap">
+		select id, parent_id,
+		sub_parent_id, name,
+		status from position_type
+		where
+		status>0
+		<if test="parentId!=null and subParentId!=null">
+			and parent_id=#{parentId} and sub_parent_id=#{subParentId}
+		</if>
+		order by id asc
+	</select>
+
+	<select id="querySecondPositionTypes" resultMap="positionTypeMap">
+		select id,
+		parent_id,
+		sub_parent_id, name,
+		status from position_type
+		where
+		status>0
+		and parent_id>0 and sub_parent_id=0
+		order by id
+		asc
+	</select>
+
+	<select id="queryThirdPositionTypes" resultMap="positionTypeMap">
+		select id,
+		parent_id,
+		sub_parent_id, name,
+		status from position_type
+		where
+		status>0
+		and parent_id>0 and sub_parent_id>0
+		order by id
+		asc
+	</select>
+
+</mapper>

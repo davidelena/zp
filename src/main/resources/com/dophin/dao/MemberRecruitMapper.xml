@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dophin.dao.MemberRecruitDAO">
+
+	<resultMap type="MemberRecruitDTO" id="memberRecruitMap">
+		<id property="id" column="id" />
+		<result property="memberId" column="member_id" />
+		<result property="resumeId" column="resume_id" />
+		<result property="recruitId" column="recruit_id" />
+		<result property="feedStatus" column="feed_status" />
+		<result property="applyType" column="apply_type" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<insert id="insertMemberRecruit" parameterType="MemberRecruitDTO"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into member_recruit
+		(member_id, resume_id, recruit_id, feed_status, apply_type,
+		create_time, update_time, status) values
+		(#{memberId}, #{resumeId},
+		#{recruitId}, #{feedStatus}, #{applyType}, now(), now(), 1)
+	</insert>
+
+	<update id="updateMemberRecruit" parameterType="MemberRecruitDTO">
+		update
+		member_recruit set member_id=#{memberId}, resume_id=#{resumeId},
+		recruit_id=#{recruitId},
+		feed_status=#{feedStatus},
+		apply_type=#{applyType}, update_time=now() where status>0 and
+		id=#{id}
+	</update>
+
+	<update id="deleteMemberRecruit" parameterType="int">
+		update
+		member_recruit set status=-1, update_time=now() where id=#{id} and
+		status>0
+	</update>
+
+	<update id="deleteMemberRecruitByCondition" parameterType="Map">
+		update
+		member_recruit set status=-1, update_time=now() where status>0
+		<if test="memberId!=null">
+			and member_id=#{memberId}
+		</if>
+		<if test="recruitId!=null">
+			and recruit_id=#{recruitId}
+		</if>
+		<if test="resumeId!=null">
+			and resume_id=#{resumeId}
+		</if>
+		<if test="applyType!=null">
+			and apply_type=#{applyType}
+		</if>
+	</update>
+
+	<select id="queryMemberRecruit" parameterType="Map" resultMap="memberRecruitMap">
+		select id, member_id, resume_id, recruit_id, feed_status, apply_type,
+		create_time, update_time, status from member_recruit where status>0
+		<if test="id!=null">
+			and id=#{id}
+		</if>
+		<if test="memberId!=null and recruitId!=null and resumeId!=null">
+			and member_id=#{memberId} and recruit_id=#{recruitId} and
+			resume_id=#{resumeId}
+		</if>
+		<if test="memberId!=null and recruitId!=null and applyType!=null">
+			and member_id=#{memberId} and recruit_id=#{recruitId} and
+			apply_type=#{applyType}
+		</if>
+	</select>
+
+	<select id="queryMemberRecruitByConditions" parameterType="Map"
+		resultMap="memberRecruitMap">
+		select id, member_id, resume_id, recruit_id, feed_status, apply_type,
+		create_time, update_time, status from member_recruit where status>0
+		<if test="id!=null">
+			and id=#{id}
+		</if>
+		<if test="memberId!=null">
+			and member_id=#{memberId}
+		</if>
+		<if test="recruitId!=null">
+			and recruit_id=#{recruitId}
+		</if>
+		<if test="applyType!=null">
+			and apply_type=#{applyType}
+		</if>
+	</select>
+
+	<select id="queryMemberRecruits" parameterType="Map"
+		resultMap="memberRecruitMap">
+		select id, member_id, resume_id, recruit_id, feed_status, apply_type,
+		create_time, update_time, status from member_recruit where status>0
+		<if test="memberId!=null">
+			and member_id=#{memberId}
+		</if>
+		<if test="resumeId!=null">
+			and resume_id=#{resumeId}
+		</if>
+		<if test="recruitId!=null">
+			and recruit_id=#{recruitId}
+		</if>
+		<if test="feedStatusStr!=null">
+			and feed_status in (${feedStatusStr})
+		</if>
+		<if test="applyType!=null">
+			and apply_type=#{applyType}
+		</if>
+		<if test="ids!=null">
+			and id in (${ids})
+		</if>
+		order by create_time desc
+		<if test="(start!=null and start>=0) and (size!=null and size>=0)">
+			limit ${start}, #{size}
+		</if>
+	</select>
+
+	<resultMap type="RecruitResumeCountDTO" id="recruitResumeCountMap">
+		<id property="id" column="id" />
+		<result property="recruitId" column="member_id" />
+		<result property="resumeCount" column="resume_id" />
+	</resultMap>
+
+	<select id="queryJobResumeApplyCount" parameterType="Map"
+		resultMap="recruitResumeCountMap">
+		select recruit_id as recruitId, count(resume_id) as resumeCount from
+		member_recruit where status>0 and apply_type=1
+		<if test="recruitId!=null">
+			and recruit_id=#{recruitId}
+		</if>
+		group by recruit_id order by recruit_id asc
+	</select>
+
+	<resultMap type="MemberRecruitDTO" id="memberRecruitMyApplyMap">
+		<id property="id" column="id" />
+		<result property="memberId" column="member_id" />
+		<result property="resumeId" column="resume_id" />
+		<result property="resumeName" column="resume_name" />
+		<result property="recruitId" column="recruit_id" />
+		<result property="positionName" column="position_name" />
+		<result property="companyName" column="company_name" />
+		<result property="feedStatus" column="feed_status" />
+		<result property="applyType" column="apply_type" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<select id="queryMemberRecruitsForMyApply" parameterType="Map"
+		resultMap="memberRecruitMyApplyMap">
+		select mr.id, mr.member_id, mr.resume_id, rs.resume_name,
+		mr.recruit_id, ri.position_name, ci.name as company_name,
+		mr.feed_status, mr.apply_type,
+		mr.create_time, mr.update_time,
+		mr.status from member_recruit mr
+		inner
+		join resume_info rs on
+		mr.resume_id = rs.id inner join recruit_info ri
+		on mr.recruit_id =
+		ri.id
+		inner join company_info ci on ri.company_id =
+		ci.id
+		where
+		mr.status>0
+		<if test="memberId!=null">
+			and mr.member_id=#{memberId}
+		</if>
+		<if test="resumeId!=null">
+			and mr.resume_id=#{resumeId}
+		</if>
+		<if test="recruitId!=null">
+			and mr.recruit_id=#{recruitId}
+		</if>
+		<if test="feedStatusStr!=null">
+			and mr.feed_status in (${feedStatusStr})
+		</if>
+		<if test="applyType!=null">
+			and mr.apply_type=#{applyType}
+		</if>
+		order by create_time desc
+		<if test="(start!=null and start>=0) and (size!=null and size>=0)">
+			limit ${start}, #{size}
+		</if>
+	</select>
+
+	<select id="queryMemberRecruitsForMyApplyCount" parameterType="Map"
+		resultType="int">
+		select count(0) as count from member_recruit where status>0
+		<if test="memberId!=null">
+			and member_id=#{memberId}
+		</if>
+		<if test="resumeId!=null">
+			and resume_id=#{resumeId}
+		</if>
+		<if test="recruitId!=null">
+			and recruit_id=#{recruitId}
+		</if>
+		<if test="feedStatusStr!=null">
+			and feed_status in (${feedStatusStr})
+		</if>
+		<if test="applyType!=null">
+			and apply_type=#{applyType}
+		</if>
+	</select>
+
+</mapper>

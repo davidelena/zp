@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<!-- 此处的顺序必须注意，1-js,css,images resouces注入，2-自动注入，3-拦截器 -->
+	<mvc:resources location="/javascript/" mapping="/javascript/**" />
+	<mvc:resources location="/css/" mapping="/css/**" />
+	<mvc:resources location="/images_zp/" mapping="/images_zp/**" />
+	<mvc:resources location="/headImages/" mapping="/headImages/**" />
+	<mvc:resources location="/companylogo/" mapping="/companylogo/**" />
+	<mvc:resources location="/companywechat/" mapping="/companywechat/**" />
+	<mvc:resources location="/resumeopus/" mapping="/resumeopus/**" />
+	<mvc:resources location="/template/" mapping="/template/**" />
+	<mvc:resources location="/resume/" mapping="/resumeopus/**" />
+	<mvc:resources location="/qrcode/" mapping="/qrcode/**" />
+
+	<!-- 放在这边是全局的application的注入 -->
+	<context:component-scan base-package="com.dophin" />
+	<mvc:annotation-driven />
+
+	<bean id="handlerExceptionResolver"
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="com.dophin.dto.AuthStudentException">redirect:/student_login</prop>
+				<prop key="com.dophin.dto.AuthCompanyException">redirect:/company_login</prop>
+			</props>
+		</property>
+	</bean>
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/resume/**" />
+			<mvc:mapping path="/recruit/**" />
+			<mvc:exclude-mapping path="/javascript/**" />
+			<mvc:exclude-mapping path="/css/**" />
+			<mvc:exclude-mapping path="/images_zp/**" />
+			<mvc:exclude-mapping path="/headImages/**" />
+			<mvc:exclude-mapping path="/companylogo/**" />
+			<mvc:exclude-mapping path="/companywechat/**" />
+			<mvc:exclude-mapping path="/resumeopus/**" />
+			<mvc:exclude-mapping path="/test/**" />
+
+			<bean class="com.dophin.controller.SecurityInterceptor">
+				<property name="excludeUrls">
+					<list>
+						<value>/student_login</value>
+						<value>/company_login</value>
+						<value>/student_index</value>
+						<value>/company_index</value>
+						<value>/member/verifyCode</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<context:property-placeholder location="classpath:dbconfig.properties" />
+
+	<!-- 配置c3p0 bean配置 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="${db.driver}"></property>
+		<property name="jdbcUrl" value="${db.url}"></property>
+		<property name="user" value="${db.username}"></property>
+		<property name="password" value="${db.password}"></property>
+		<property name="initialPoolSize" value="${db.initPoolSize}"></property>
+		<property name="minPoolSize" value="${db.minPoolSize}"></property>
+		<property name="maxPoolSize" value="${db.maxPoolSize}"></property>
+		<property name="maxIdleTime" value="${db.maxIdleTime}"></property>
+		<property name="acquireIncrement" value="${db.acquireIncrement}"></property>
+		<property name="acquireRetryAttempts" value="${db.acquireRetryAttempts}"></property>
+		<property name="preferredTestQuery" value="${db.preferredTestQuery}"></property>
+		<property name="testConnectionOnCheckin" value="${db.testConnectionOnCheckin}"></property>
+		<property name="testConnectionOnCheckout" value="${db.testConnectionOnCheckout}"></property>
+		<property name="idleConnectionTestPeriod" value="${db.idleConnectionTestPeriod}"></property>
+		<property name="breakAfterAcquireFailure" value="${db.breakAfterAcquireFailure}"></property>
+		<!-- <property name="maxStatements" value="${db.maxStatements}"></property> -->
+	</bean>
+
+	<!--事务管理 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<property name="typeAliasesPackage" value="com.dophin.dto" />
+	</bean>
+
+	<!-- 注入mapper接口 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.dophin.dao" />
+	</bean>
+
+	<!-- 上传文件 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="1048576000" />
+		<property name="maxInMemorySize" value="4096" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+
+</beans>

@@ -1,0 +1,1675 @@
+﻿@charset "utf-8";
+/* CSS Document */
+body,div,ul,li,img,a,h1,h3,h4,h5,h6,p,input,span,form,select,option,textarea,span
+	{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+.coLogin_codeBotton_cp {
+	/* 	-moz-box-shadow: inset 0px 1px 0px 0px #0268b6;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #0268b6; */
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: "Microsoft YaHei";
+	font-size: 14px;
+	font-weight: bold;
+	padding: 0px 20px;
+	text-decoration: none;
+	position: absolute;
+	top: 198px;
+	right: 200px;
+}
+
+.coLoginBotton {
+	-moz-box-shadow: inset 0px 1px 0px 0px #0268b6;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #0268b6;
+	box-shadow: inset 0px 1px 0px 0px #0268b6;
+	background-color: #335cc4;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: "Microsoft YaHei";
+	font-size: 20px;
+	font-weight: bold;
+	padding: 10px 80px;
+	text-decoration: none;
+	position: absolute;
+	top: 320px;
+	left: 190px;
+}
+
+a {
+	display: block;
+	text-decoration: none;
+	font-family: "Microsoft YaHei";
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.clearFix:after {
+	clear: both;
+	display: block;
+	visibility: didden;
+	height: 0;
+	line-height: 0;
+	content: ".";
+}
+
+.clearFix: {
+	zoom: 1;
+}
+
+.f-cb:after {
+	content: ".";
+	visibility: hidden;
+	display: block;
+	height: 0;
+	clear: both;
+}
+
+/*------------background-------------*/
+body {
+	font-family: "Microsoft YaHei";
+	min-height: 100%;
+}
+
+body {
+	background: #F8F8F8; 
+}
+/*--------------sidebar--------------*/
+.menuClosed {
+	width: 60px;
+	height: 100%;
+	position: fixed;
+	float: left;
+}
+
+.menuClosed ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	background: #313131;
+}
+
+.menuClosed ul img {
+	height: 50px;
+	width: auto;
+	margin: 0px 5px;
+	padding: 20px 0;
+	border-bottom: 1px solid #5c5c5c;
+}
+
+.logo {
+	padding: 50px 0;
+}
+/*------------Co_companyIndex.html------------*/
+.coCI_content {
+	height: 250px;
+	width: 700px;
+	margin: 0 auto 20px auto;
+	background-color: #f1f7fb;
+	position: relative;
+}
+
+.coCI_content_new {
+	min-height: 500px;
+	height: auto;
+	width: 700px;
+	margin: 0 auto 20px auto;
+	background-color: #f1f7fb;
+	position: relative;
+	height: auto;
+}
+
+.coCI_all {
+	width: 900px;
+	margin: 0 auto;
+}
+
+.coCI_center {
+	float: left;
+	width: cover;
+}
+
+.coCI_rightBar {
+	height: 500px;
+	width: 150px;
+	float: left;
+	margin: 0px auto auto 20px;
+	/*background-color:gold;*/
+}
+/*---------------*/
+.coCI_jobName {
+	color: #3c3c3c;
+	position: relative;
+	height: 100px;
+}
+
+.coCI_jobName p {
+	height: 20px;
+	line-height: 20px;
+	padding-left: 20px;
+}
+
+.coCI_jobName h3,h6 {
+	display: inline;
+	padding-left: 20px;
+}
+
+.coCI_department {
+	font-size: 12px;
+	width: 660px;
+}
+
+.coCI_jobName a {
+	display: inline;
+	margin-right: 20px;
+	font-size: 12px;
+	color: #3c3c3c;
+	vertical-align: text-bottom;
+}
+
+.coCI_share {
+	margin-left: 20px;
+}
+
+.coCI_jobName a img {
+	margin-right: 5px;
+}
+/*--------------*/
+.coCI_basicInfo {
+	color: #3c3c3c;
+	position: relative;
+	height: 250px;
+}
+
+.coCI_basicInfo p {
+	height: 15px;
+	line-height: 15px;
+	padding-left: 20px;
+}
+
+.coCI_basicInfo h4 {
+	display: inline;
+	padding-left: 20px;
+}
+
+.coCI_basicInfo span {
+	color: #044F89;
+	margin-right: 20px;
+	font-size: 12px;
+}
+
+.coCI_basicInfo a {
+	display: inline;
+	margin-right: 20px;
+	font-size: 12px;
+	color: #3c3c3c;
+	vertical-align: text-bottom;
+}
+
+.coCI_basicInfo a img {
+	margin-right: 5px;
+}
+/*-------------*/
+.coCI_discribe {
+	min-height: 500px;
+	height: auto;
+	color: #3c3c3c;
+}
+
+.coCI_discribe_new {
+	color: #3c3c3c;
+}
+
+.coCI_discribe li {
+	font-size: 12px;
+}
+
+.coCI_discribe h6 {
+	margin-right: 20px;
+}
+
+.coCI_discribe p {
+	height: 20px;
+	line-height: 20px;
+}
+
+.coCI_discribe h3 {
+	padding-left: 20px;
+}
+
+.coCI_discribe table {
+	width: 660px;
+	margin: 0 20px;
+}
+
+.coCI_discribe td {
+	height: 25px;
+}
+
+/* table tr td:first-child,table tr td:first-child {
+	width: 120px;
+}
+ */
+.coCI_left {
+	font-weight: bold;
+	font-size: 14px;
+	vertical-align: top;
+}
+
+.coCI_right {
+	font-size: 14px;
+}
+/*---------*/
+.coCI_jobLogo {
+	height: 150px;
+	width: 150px;
+	margin: 0 auto;
+	background-color: #f1f7fb;
+}
+
+.coCI_jobLogo img {
+	width: 100px;
+	height: 100px;
+	margin: 15px 25px auto 25px;
+}
+
+.coCI_jobLogo p {
+	font-size: 14px;
+	color: #3c3c3c;
+	text-align: center;
+	margin-top: 5px;
+}
+
+.coCI_scale {
+	height: 70px;
+	width: 150px;
+	border-radius: 10px;
+	margin: 10px 0;
+	opacity: 0.9;
+}
+
+.coCI_scale p {
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+
+.coCI_scale img {
+	margin-right: 10px;
+}
+
+.coCI_jobMap p {
+	font-size: 12px;
+	margin-bottom: 10px;
+}
+/*------------*/
+.coCI_list {
+	min-height: 200px;
+	height: auto;
+	width: 700px;
+}
+
+.coCI_list ul li {
+	float: left;
+	margin: 0 20px;
+}
+/*--------------*/
+.coCI_blank {
+	height: 40px;
+}
+
+.coCI_footer {
+	position: relative;
+	margin-top: -100px;
+	height: 60px;
+	width: 100%;
+	clear: both;
+	background: #3B7CAF;
+	font-size: 12px;
+	text-align: center;
+	line-height: 30px;
+	z-index: -1;
+}
+/*------------Co_givejob.html------------*/
+.coGJ_content {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.coGJ_content form {
+	height: 830px;
+	width: 700px;
+	margin: 0 auto;
+}
+/*----------------*/
+.coGJ_content fieldset {
+	font-size: 14px;
+	border: 2px dashed #3c3c3c;
+	margin-bottom: 20px;
+}
+
+.coGJ_content fieldset legend {
+	font-size: 18px;
+}
+
+.coGJ_content fieldset span {
+	vertical-align: top;
+}
+
+.coGJ_content fieldset textarea {
+	width: 450px;
+}
+
+.coGJ_content a {
+	display: inline;
+}
+
+.coGJ_type {
+	margin-right: 20px;
+}
+
+.coGJ_bottom {
+	height: 60px;
+	width: 250px;
+	margin: 0 auto;
+}
+
+.coGJ_bottom p {
+	font-size: 12px;
+	width: 180px;
+	margin: 10px auto;
+}
+/*-----------------*/
+.coGJ_mn {
+	border: none;
+	height: 27px;
+	width: 250px;
+	font-size: 12px;
+	text-indent: 1em;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 20px;
+}
+
+.coGJ_mn::-webkit-input-placeholder {
+	color: #999;
+	font-size: 12px;
+	text-indent: 1em;
+	-webkit-transition: color.5s;
+}
+
+.coGJ_mn:focus::-webkit-input-placeholder,input:hover::-webkit-input-placeholder
+	{
+	color: #c2c2c2;
+	font-size: 12px;
+	text-indent: 1em;
+	-webkit-transition: color.5s;
+}
+
+.coGJ_special {
+	border: none;
+	height: 30px;
+	width: 200px;
+	font-size: 12px;
+	text-indent: 1em;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.coGJ_special::-webkit-input-placeholder {
+	color: #999;
+	font-size: 12px;
+	text-indent: 1em;
+	-webkit-transition: color.5s;
+}
+
+.coGJ_special:focus::-webkit-input-placeholder,input:hover::-webkit-input-placeholder
+	{
+	color: #c2c2c2;
+	font-size: 12px;
+	text-indent: 1em;
+	-webkit-transition: color.5s;
+}
+/*---------------*/
+.coGJ_save {
+	border: none;
+	background-color: #2150a6;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: "Microsoft YaHei";
+	font-size: 12px;
+	font-weight: bold;
+	padding: 5px 12px;
+	text-decoration: none;
+	margin: 0 10px;
+}
+
+.coGJ_save:hover {
+	background-color: #335cc4;
+}
+
+.coGJ_bottom {
+	height: 30px;
+	width: 300px;
+	margin: 0 auto;
+}
+/*-----------------*/
+.coGJ_blank {
+	height: 40px;
+}
+
+.coGJ_footer {
+	height: 60px;
+	z-index: -1;
+	width: 100%;
+	clear: both;
+	background: #3B7CAF;
+	font-size: 12px;
+	text-align: center;
+	line-height: 30px;
+}
+/*------------Co_givejob2.html------------*/
+.coGJ2_footer {
+	height: 60px;
+	z-index: -1;
+	width: 100%;
+	clear: both;
+	background: #3B7CAF;
+	font-size: 12px;
+	text-align: center;
+	line-height: 30px;
+}
+
+.coGJ2_bottom {
+	height: 60px;
+	width: 250px;
+	margin: 0 auto;
+}
+
+.coGJ2_bottom p {
+	font-size: 12px;
+	width: 180px;
+	margin: 10px auto;
+}
+/*------------Co_index.html------------*/
+.coIndex_all {
+	width: 1000px;
+	margin: 0 auto;
+	position: relative;
+	top: -400px;
+}
+
+.coIndex_top {
+	height: 100px;
+	width: 100%;
+	background: url(../../images_zp/top-black.jpg) repeat-x;
+	position: relative;
+}
+
+.coIndex_three {
+	position: relative;
+	height: 100px;
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.coIndex_logo {
+	height: 100%;
+	width: 200px;
+	position: relative;
+}
+
+.coIndex_logo img {
+	height: auto;
+	width: 200px;
+	position: absolute;
+	top: 20%;
+	left: 0;
+}
+
+.coIndex_login {
+	height: 100px;
+	width: 125px;
+	position: absolute;
+	top: 0;
+	right: 20%;
+}
+
+.coIndex_login img {
+	height: 30px;
+	position: absolute;
+	top: 35%;
+}
+
+.coIndex_login p {
+	font-family: "Microsoft YaHei";
+	font-size: 20px;
+	color: #FFFFFF;
+	position: absolute;
+	top: 40%;
+	left: 40%;
+}
+
+.coIndex_login p a {
+	color: #ffffff;
+}
+
+.coIndex_button {
+	height: 100px;
+	width: 200px;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.coIndex_companyButton {
+	background-color: #007dc1;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	border: 1px solid #124d77;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: "Microsoft YaHei";
+	font-size: 16px;
+	font-weight: bold;
+	padding: 6px 24px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #154682;
+	position: absolute;
+	top: 35%;
+	right: 0;
+}
+
+.coIndex_companyButton:hover {
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0061a7
+		), color-stop(1, #007dc1));
+	background: -moz-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+	background: -webkit-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+	background: -o-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+	background: -ms-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+	background: linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0061a7',
+		endColorstr='#007dc1', GradientType=0);
+	background-color: #0061a7;
+}
+/*----------------*/
+.coIndex_first {
+	height: 600px;
+}
+
+.coIndex_middle {
+	background: white top;
+	height: 100%;
+	width: 100%;
+	opacity: 0.5;
+	z-index: -1;
+}
+
+.coIndex_middle .coIndex_run {
+	background: url(../../images_zp/hello.jpg) no-repeat top;
+	height: 100%;
+	width: 1000px;
+	filter:
+		"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
+	-moz-background-size: 100% 100%;
+	background-size: 100% 100%;
+	opacity: 0.5;
+	margin: 0 auto;
+}
+
+.coIndex_footer {
+	height: 150px;
+	width: 600px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.coIndex_somewheretoput {
+	height: 150px;
+	width: 330px;
+	position: absolute;
+	left: 350px;
+}
+
+.coIndex_somewheretoput p {
+	color: #3c3c3c;
+	font-size: 12px;
+	position: absolute;
+	top: 0px;
+	font-family: "Apple LiSung Light";
+	font-weight: bold;
+}
+
+.coIndex_signBotton {
+	background-color: #335cc4;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 20px;
+	font-weight: bold;
+	padding: 13px 15px;
+	text-decoration: none;
+	position: absolute;
+	top: 40px;
+	left: 28px;
+}
+
+.coIndex_signBotton:hover {
+	background-color: #2150a6;
+}
+/*---------------------*/
+.coIndex_second {
+	height: 250px;
+	background-color: #6CADE8;
+}
+
+.coIndex_slides {
+	height: 250px;
+	width: 1000px;
+	margin: 0 auto;
+	display: none;
+}
+
+.coIndex_third {
+	height: 200px;
+}
+
+.coIndex_third .coIndex_tuP {
+	width: 1000px;
+	height: 200px;
+	margin: 0 auto;
+}
+/*---------------*/
+.coIndex_info {
+	position: absolute;
+	text-decoration: none;
+	bottom: 10px;
+}
+
+.coIndex_info p {
+	float: left;
+	margin: 0 43px 40px 43px;
+}
+
+.coIndex_info p a {
+	color: #A6B3C1;
+}
+
+.coIndex_numb {
+	color: #A6B3C1;
+	position: absolute;
+	font-family: "Microsoft YaHei";
+	font-size: 12px;
+	top: 120px;
+	left: 203px;
+}
+/*-----------------*/
+.coIndex_signBotton2 {
+	background-color: #335cc4;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 20px;
+	font-weight: bold;
+	padding: 13px 15px;
+	text-decoration: none;
+	position: absolute;
+	top: 10px;
+	left: 175px;
+}
+
+.coIndex_signBotton2:hover {
+	background-color: #2150a6;
+}
+/*------------Co_login.html------------*/
+.coLGIN_blank {
+	height: 30px;
+}
+
+.coLGIN_header {
+	height: 120px;
+	width: 940px;
+	margin: 0 auto auto auto;
+	position: relative;
+	/*border:1px solid blue;*/
+}
+
+.coLGIN_header .coLGIN_logo {
+	width: 284px;
+	height: 110px;
+	position: absolute;
+	top: 0;
+	left: 30px;
+}
+
+.coLGIN_header .coLGIN_logo p {
+	width: 284px;
+	height: 110px;
+	background-color: white;
+	border-radius: 15px;
+	opacity: 0.5;
+}
+
+.coLGIN_header .coLGIN_logo img {
+	height: 100px;
+	width: auto;
+	position: absolute;
+	top: 5px;
+	left: 25px;
+}
+
+.coLGIN_header .coLGIN_tag {
+	height: 110px;
+	width: 656px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+.coLGIN_header .coLGIN_tag p {
+	text-align: center;
+	line-height: 65px;
+	background-color: #c9c9c9;
+	font-size: 16px;
+}
+
+.coLGIN_header .coLGIN_tag .coLGIN_stu {
+	height: 65px;
+	width: 280px;
+	position: absolute;
+	background-color: #fff;
+	bottom: 0;
+	left: 75px;
+}
+
+.coLGIN_header .coLGIN_tag .coLGIN_comp {
+	height: 65px;
+	width: 280px;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+.coLGIN_body {
+	height: 480px;
+	width: 940px;
+	background-color: #c9c9c9;
+	margin: 0 auto 40px auto;
+	position: relative;
+}
+
+.coLGIN_body .coLGIN_left {
+	height: 440px;
+	width: 356px;
+	border-right: 2px dashed #616161;
+	position: absolute;
+	top: 20px;
+}
+
+.coLGIN_body .coLGIN_left .coLGIN_pic {
+	width: 250px;
+	height: 250px;
+	margin: 20px 50px;
+}
+
+.coLGIN_body .coLGIN_left .coLGIN_text {
+	width: 235px;
+	height: 123px;
+	margin: 5px 57px;
+}
+
+.coLGIN_body .coLGIN_right {
+	height: 440px;
+	width: 580px;
+	position: absolute;
+	top: 20px;
+	right: 0;
+}
+
+.coLGIN_getOne {
+	display: inline;
+	text-align: right;
+	font-size: 12px;
+	color: #2178be;
+	position: absolute;
+	top: 10px;
+	right: 45px;
+}
+
+.coLGIN_getOne a {
+	color: red;
+	text-decoration: underline;
+	display: inline;
+}
+
+.coLGIN_imgcode_div {
+	position: absolute;
+	height: 50px;
+}
+
+.coLGIN_verifycode {
+	border: none;
+	height: 50px;
+	width: 250px;
+	font-size: 14px;
+	text-indent: 2em;
+	position: absolute;
+	left: 30px;
+	top: 200px;
+}
+
+.coLGIN_verifycode_img {
+	height: 50px;
+	width: 100px;
+	position: absolute;
+	left: 310px;
+	top: 200px;
+}
+
+.coLGIN_changeImgLink {
+	position: absolute;
+	right: 80px;
+	top: 215px;
+	display: inline;
+}
+
+.coLGIN_user,.coLGIN_pswd {
+	border: none;
+	height: 50px;
+	width: 505px;
+	font-size: 14px;
+	text-indent: 2em;
+	position: absolute;
+	top: 40px;
+	left: 30px;
+}
+
+.coLGIN_user,.coLGIN_pswd::-webkit-input-placeholder {
+	color: #999;
+	font-size: 14px;
+	text-indent: 2em;
+	-webkit-transition: color.5s;
+}
+
+.coLGIN_user,.coLGIN_pswd:focus::-webkit-input-placeholder,input:hover::-webkit-input-placeholder
+	{
+	color: #c2c2c2;
+	font-size: 14px;
+	text-indent: 2em;
+	-webkit-transition: color.5s;
+}
+
+.coLGIN_pswd {
+	height: 50px;
+	width: 505px;
+	text-indent: 2em;
+	position: absolute;
+	top: 120px;
+}
+
+.coLGIN_checkBox {
+	font-size: 12px;
+	position: absolute;
+	left: 30px;
+	top: 293px;
+	color: #3c3c3c;
+}
+
+.coLGIN_forget {
+	width: 100px;
+	height: auto;
+	position: absolute;
+	right: 48px;
+	top: 213px;
+	text-align: right;
+	font-size: 12px;
+	color: #2178be;
+}
+
+.coLGIN_forget a {
+	color: #2178be;
+	text-decoration: underline;
+}
+
+.coLGIN_signBotton {
+	background-color: #335cc4;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: "Microsoft YaHei";
+	font-size: 20px;
+	font-weight: bold;
+	padding: 10px 80px;
+	text-decoration: none;
+	position: absolute;
+	top: 350px;
+	left: 190px;
+}
+
+.coLGIN_signBotton:hover {
+	background-color: #2150a6;
+}
+/*------------Co_loginsuccess.html------------*/
+.coLGINSUC_welcome {
+	height: 25%;
+	width: auto;
+	margin-left: 60px;
+}
+
+.coLGINSUC_welcome ul {
+	list-style-type: none;
+	width: 100%;
+	height: 160px;
+}
+
+.coLGINSUC_welcome ul h1,h5 {
+	text-align: center;
+	color: #353535;
+	line-height: 3em;
+	letter-spacing: 0.5em;
+}
+/*----------*/
+.coLGINSUC_content {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.coLGINSUC_content form {
+	height: 830px;
+	width: 700px;
+	margin: 0 auto;
+}
+/*-------------*/
+.coLGINSUC_content fieldset {
+	font-size: 14px;
+	border: 2px dashed #3c3c3c;
+	margin-bottom: 20px;
+}
+
+.coLGINSUC_content fieldset legend {
+	font-size: 18px;
+}
+
+.coLGINSUC_content fieldset span {
+	vertical-align: top;
+}
+
+.coLGINSUC_content fieldset textarea {
+	width: 450px;
+}
+
+.coLGINSUC_content a {
+	display: inline;
+}
+
+.coLGINSUC_type {
+	margin-right: 20px;
+}
+/*-------------*/
+.coLGINSUC_mn_border {
+	border: solid 1px;
+	height: 30px;
+	width: 250px;
+	font-size: 12px;
+	text-indent: 1em;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 20px;
+}
+
+.coLGINSUC_mn {
+	border: none;
+	height: 30px;
+	width: 250px;
+	font-size: 12px;
+	text-indent: 1em;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 20px;
+}
+
+.coLGINSUC_mn::-webkit-input-placeholder {
+	color: #999;
+	font-size: 12px;
+	text-indent: 1em;
+	-webkit-transition: color.5s;
+}
+
+.coLGINSUC_mn:focus::-webkit-input-placeholder,input:hover::-webkit-input-placeholder
+	{
+	color: #c2c2c2;
+	font-size: 12px;
+	text-indent: 1em;
+	-webkit-transition: color.5s;
+}
+
+.coLGINSUC_special {
+	border: none;
+	height: 30px;
+	width: 200px;
+	font-size: 12px;
+	text-indent: 1em;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.coLGINSUC_special::-webkit-input-placeholder {
+	color: #999;
+	font-size: 12px;
+	text-indent: 1em;
+	-webkit-transition: color.5s;
+}
+
+.coLGINSUC_special:focus::-webkit-input-placeholder,input:hover::-webkit-input-placeholder
+	{
+	color: #c2c2c2;
+	font-size: 12px;
+	text-indent: 1em;
+	-webkit-transition: color.5s;
+}
+/*---------------*/
+.coLGINSUC_save {
+	border: none;
+	background-color: #2150a6;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: "Microsoft YaHei";
+	font-size: 12px;
+	font-weight: bold;
+	padding: 5px 12px;
+	text-decoration: none;
+	margin: 0 10px;
+}
+
+.coLGINSUC_save:hover {
+	background-color: #335cc4;
+}
+
+.coLGINSUC_bottom {
+	height: 30px;
+	width: 190px;
+	margin: 0 auto;
+}
+/*----------------*/
+.coLGINSUC_footer {
+	margin-top: -60px;
+	height: 60px;
+	width: 100%;
+	clear: both;
+	background: #3B7CAF;
+	font-size: 12px;
+	text-align: center;
+	line-height: 30px;
+}
+/*----如需修改----*/
+.coLGINSUC_needChange {
+	font-size: 12px;
+	height: 20px;
+	width: 270px;
+	margin: 0 auto;
+}
+/*------------Co_loginsuccess2.html------------*/
+.coLGINSUC2_bottom {
+	height: 30px;
+	width: 275px;
+	margin: 0 auto;
+}
+/*------------Co_loginsuccess3.html------------*/
+.coLGINSUC3_bottom {
+	height: 30px;
+	width: 225px;
+	margin: 0 auto;
+}
+/*------------Co_loginsuccess3-open.html------------*/
+.coLGINSUC_col1 {
+	width: 120px;
+	text-align: right;
+}
+
+.coLGINSUC_changePsw {
+	border: 1px dashed #3c3c3c;
+}
+
+.coLGINSUC_why {
+	font-size: 12px;
+	color: #BBCFDF;
+}
+/*------------Co_searchResume.html------------*/
+.coSR_title {
+	color: #353535;
+	text-align: center;
+	letter-spacing: 0.5em;
+	line-height: 3em;
+}
+/*----------*/
+.coSR_top {
+	width: 800px;
+	height: 40px;
+	line-height: 40px;
+	margin: 0 auto;
+	background-color: #ffffff;
+}
+
+.coSR_top span {
+	padding: 0 20px;
+	font-size: 12px;
+}
+
+.coSR_top a {
+	display: inline;
+	color: #3c3c3c;
+}
+
+.coSR_topsearch {
+	width: 400px;
+}
+
+.coSR_top2 {
+	width: 800px;
+	height: 90px;
+	line-height: 40px;
+	margin: 0 auto;
+	background-color: #ffffff;
+}
+
+.coSR_option {
+	margin: 0 20px;
+	width: 120px;
+	height: 30px;
+}
+
+.coSR_search {
+	position: relative;
+}
+
+.coSR_searchBtn {
+	float: right;
+	position: absolute;
+	top: -5px;
+	right: -40px;
+}
+/*--------------*/
+.coSR_content {
+	margin-left: 120px;
+	width: 800px;
+	height: 50px;
+	line-height: 40px;
+	margin: 20px auto;
+	background-color: #ffffff;
+}
+
+.coSR_twoC {
+	width: 800px;
+	margin: 10px auto;
+}
+
+.coSR_content h4 {
+	padding: 5px 20px;
+	color: #07518B;
+}
+
+.coSR_content h4 span {
+	font-size: 14px;
+	color: #ffffff;
+	background-color: #236498;
+	margin-left: 20px;
+	padding: 5px 10px;
+}
+
+.coSR_content h4 .coSR_multi {
+	font-size: 14px;
+	color: #ffffff;
+	background-color: #646464;
+	padding: 5px 10px;
+}
+
+.coSR_multi {
+	margin-left: 320px;
+}
+
+.coSR_content p {
+	font-size: 14px;
+}
+
+.coSR_row {
+	float: left;
+	margin-left: 20px;
+}
+
+.coSR_right {
+	float: right;
+	margin-right: 20px;
+}
+/*------------*/
+.coSR_resume-img {
+	display: inline;
+}
+
+.coSR_leftC ul {
+	width: 800px;
+}
+
+.coSR_leftC ul li {
+	width: 800px;
+	height: 70px;
+	margin-bottom: 5px;
+	background-color: #DEDEDE;
+}
+
+.coSR_checkbox-checkOne {
+	float: left;
+	margin: 10px 0 0 20px;
+}
+
+.coSR_resume-img {
+	float: left;
+	margin: 10px 0 0 0;
+}
+
+.coSR_resume-info {
+	float: left;
+	margin: 6px 0 0 10px;
+}
+
+.coSR_resume-info .resume-text {
+	font-size: 14px;
+}
+
+.coSR_links {
+	float: right;
+	margin-top: 25px;
+}
+
+.coSR_links a {
+	display: inline;
+	font-size: 14px;
+	color: #ffffff;
+	background-color: #3BA7FF;
+	margin-left: 10px;
+	margin-right: 20px;
+	padding: 5px 10px;
+}
+/*------------Co_seePeople.html------------*/
+.coSP_title {
+	color: #353535;
+	text-align: center;
+	letter-spacing: 0.5em;
+	line-height: 3em;
+}
+/*----------*/
+.coSP_top {
+	width: 800px;
+	height: 40px;
+	line-height: 40px;
+	margin: 0 auto;
+	background-color: #ffffff;
+}
+
+.coSP_top span {
+	padding: 0 20px;
+	font-size: 16px;
+}
+
+.coSP_top a {
+	display: inline;
+	color: #3c3c3c;
+}
+
+.coSP_topsearch {
+	width: 400px;
+}
+
+.coSP_top2 {
+	width: 800px;
+	height: 90px;
+	line-height: 40px;
+	margin: 0 auto;
+	background-color: #ffffff;
+}
+
+.coSP_option {
+	margin: 0 20px;
+	width: 120px;
+	height: 30px;
+}
+
+.coSP_search {
+	position: relative;
+}
+
+.coSP_searchBtn {
+	float: right;
+	position: absolute;
+	top: -5px;
+	right: -40px;
+}
+/*--------------*/
+.coSP_content {
+	margin-left: 120px;
+	width: 800px;
+	height: 50px;
+	line-height: 40px;
+	margin: 20px auto;
+	background-color: #ffffff;
+}
+
+.coSP_twoC {
+	width: 800px;
+	margin: 10px auto;
+	min-height: 515px;
+	height: auto;
+}
+
+.coSP_content h4 {
+	padding: 5px 20px;
+	color: #07518B;
+}
+
+.coSP_content h4 span {
+	font-size: 14px;
+	color: #ffffff;
+	background-color: #236498;
+	margin-left: 20px;
+	padding: 5px 10px;
+}
+
+.coSP_content h4 .coSP_multi {
+	font-size: 14px;
+	color: #ffffff;
+	background-color: #646464;
+	padding: 5px 10px;
+}
+
+.coSP_multi {
+	margin-left: 320px;
+}
+
+.coSP_content p {
+	font-size: 14px;
+}
+
+.coSP_row {
+	float: left;
+	margin-left: 20px;
+}
+
+.coSP_right {
+	float: right;
+	margin-right: 20px;
+}
+/*------------*/
+.coSP_resume-img {
+	display: inline;
+}
+
+.coSP_leftC ul {
+	width: 800px;
+}
+
+.coSP_leftC ul li {
+	width: 800px;
+	height: 90px;
+	margin-bottom: 5px;
+	background-color: #DEDEDE;
+	position: relative;
+}
+
+.coSP_checkbox-checkOne {
+	float: left;
+	margin: 10px 0 0 20px;
+}
+
+.coSP_resume-img {
+	float: left;
+	margin: 10px 0 0 0;
+}
+
+.coSP_resume-info {
+	float: left;
+	margin: 6px 0 0 10px;
+}
+
+.coSP_resume-info .resume-text span {
+	font-size: 14px;
+}
+
+.coSP_links {
+	float: right;
+	height: 30px;
+	width: 470px;
+	position: absolute;
+	top: 56px;
+	right: 0;
+}
+
+.coSP_links a {
+	display: inline;
+	font-size: 14px;
+	color: #ffffff;
+	background-color: #3BA7FF;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding: 5px 10px;
+}
+/*------------Co_seeReply.html------------*/
+.coSRPLY_topMenu {
+	width: 100%;
+	height: 60px;
+	float: left;
+	background-color: #0099FF;
+}
+
+.coSRPLY_topMenu div {
+	float: left;
+	width: 150px;
+	height: 60px;
+	text-align: center;
+	line-height: 60px;
+	background-color: #ffffff;
+	border-right: 4px solid #0099FF;
+}
+
+.coSRPLY_topMenu .coSRPLY_findFulltime {
+	margin-left: 60px;
+}
+
+.coSRPLY_topMenu .coSRPLY_findIntern {
+	background-color: #6AC1FF;
+}
+
+.coSRPLY_topMenu a {
+	color: #313131;
+}
+/*-----------*/
+.coSRPLY_title {
+	color: #353535;
+	text-align: center;
+	letter-spacing: 0.5em;
+	line-height: 3em;
+}
+/*-------------*/
+.coSRPLY_top {
+	margin-left: 120px;
+	width: 800px;
+	height: 40px;
+	line-height: 40px;
+	margin: 0 auto;
+	background-color: #ffffff;
+}
+
+.coSRPLY_top span {
+	padding: 0 20px;
+}
+
+.coSRPLY_top a {
+	display: inline;
+	color: #3c3c3c;
+}
+/*-------------*/
+.coSRPLY_content {
+	margin-left: 120px;
+	width: 800px;
+	height: 140px;
+	line-height: 40px;
+	margin: 20px auto;
+	background-color: #ffffff;
+}
+
+.coSRPLY_content a {
+	display: inline;
+	margin-left: 20px;
+	text-decoration: underline;
+}
+
+.coSRPLY_content h4 {
+	padding: 5px 20px;
+	border-bottom: 1px dashed gray;
+	width: 250px;
+	color: #07518B;
+	display: block;
+}
+
+.coSRPLY_content p {
+	font-size: 14px;
+}
+
+.coSRPLY_row {
+	float: left;
+	margin-left: 20px;
+	clear: both;
+}
+
+.coSRPLY_right {
+	float: right;
+	margin-right: 20px;
+}
+
+.coSRPLY_content .coSRPLY_situation1 {
+	font-weight: bold;
+	color: #FF9524;
+}
+
+.coSRPLY_content .coSRPLY_situation2 {
+	font-weight: bold;
+	color: #E50308;
+}
+
+.coSRPLY_content .coSRPLY_situation3 {
+	font-weight: bold;
+	color: #2C9350;
+}
+/*------------Co_signUp.html------------*/
+.coLGIN_agree {
+	position: absolute;
+	top: 170px;
+	left: 30px;
+	font-size: 12px;
+	color: #3c3c3c;
+	font-weight: normal;
+	height: 50px;
+}
+/*------------Co_noticeInterview.html------------*/
+.coNI_content {
+	border: 1px solid #3c3c3c;
+	width: 500px;
+	min-height: 300px;
+	height: auto;
+	margin: 0 auto;
+	background-color: #ffffff;
+	position: relative;
+	top: 50px;
+}
+
+.coNI_content h4 {
+	background-color: #5185AE;
+	height: 60px;
+	width: 100%;
+	line-height: 60px;
+	text-align: center;
+	color: #ffffff;
+	margin: 0 auto;
+}
+
+.coNI_left {
+	vertical-align: top;
+	text-align: right;
+	padding: 10px 0;
+	color: #3F78A5;
+	font-weight: bold;
+}
+
+.coNI_right {
+	padding: 0 20px;
+}
+
+.coNI_yes {
+	border: none;
+	background-color: #2150a6;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: "Microsoft YaHei";
+	font-size: 12px;
+	font-weight: bold;
+	padding: 5px 12px;
+	text-decoration: none;
+	margin: 20px 0;
+}
+
+.coNI_yes:hover {
+	background-color: #335cc4;
+}
+
+.coNI_no {
+	border: none;
+	background-color: #2150a6;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: "Microsoft YaHei";
+	font-size: 12px;
+	font-weight: bold;
+	padding: 5px 12px;
+	text-decoration: none;
+	margin: 20px 50px;
+}
+
+.coNI_no:hover {
+	background-color: #335cc4;
+}
+/*------------*/
+.coCI_list {
+	min-height: 200px;
+	height: auto;
+	width: 700px;
+}
+
+.coCI_list table tr td {
+	margin-top: 20px;
+	padding-top: 3px;
+	font-size: 12px;
+	width: 50%;
+	font-size: 12px
+}
+
+.coRegisterImg {
+	left: 460px;
+	top: 220px;
+	position: absolute;
+	width: 60px;
+	height: 50px;
+}

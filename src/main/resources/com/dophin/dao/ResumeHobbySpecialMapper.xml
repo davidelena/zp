@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dophin.dao.ResumeHobbySpecialDAO">
+
+	<resultMap type="ResumeHobbySpecialDTO" id="resumeHobbySpecialMap">
+		<id property="id" column="id" />
+		<result property="resumeId" column="resume_id" />
+		<result property="specialName" column="special_name" />
+		<result property="specialDesc" column="special_desc" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<insert id="insertResumeHobbySpecial" parameterType="ResumeHobbySpecialDTO"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into resume_hobby_special
+		(resume_id, special_name, special_desc, create_time,
+		update_time,
+		status) values (#{resumeId}, #{specialName}, #{specialDesc}, now(),
+		now(), 1)
+	</insert>
+
+	<update id="updateResumeHobbySpecial" parameterType="ResumeHobbySpecialDTO">
+		update
+		resume_hobby_special set resume_id=#{resumeId},
+		special_name=#{specialName}, special_desc=#{specialDesc},
+		update_time=now() where status>0
+		and id=#{id}
+	</update>
+
+	<update id="deleteResumeHobbySpecial" parameterType="int">
+		update
+		resume_hobby_special set status=-1, update_time=now() where id=#{id}
+		and
+		status>0
+	</update>
+
+	<select id="queryResumeHobbySpecial" parameterType="int"
+		resultMap="resumeHobbySpecialMap">
+		select id, resume_id, special_name, special_desc,
+		create_time,
+		update_time, status from
+		resume_hobby_special
+		where status>0
+		and id=#{id}
+	</select>
+
+	<select id="queryResumeHobbySpecials" parameterType="int"
+		resultMap="resumeHobbySpecialMap">
+		select id, resume_id, special_name, special_desc,
+		create_time,
+		update_time, status from resume_hobby_special where
+		status>0 and
+		resume_id=#{resumeId}
+	</select>
+
+</mapper>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dophin.dao.ResumeOpusInfoDAO">
+
+	<resultMap type="ResumeOpusInfoDTO" id="resumeOpusInfoMap">
+		<id property="id" column="id" />
+		<result property="resumeId" column="resume_id" />
+		<result property="opusName" column="opus_name" />
+		<result property="opusUrl" column="opus_url" />
+		<result property="opusPath" column="opus_path" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<insert id="insertResumeOpusInfo" parameterType="ResumeOpusInfoDTO"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into resume_opus_info
+		(resume_id, opus_name, opus_url, opus_path, create_time,
+		update_time, status) values
+		(#{resumeId}, #{opusName}, #{opusUrl}, #{opusPath}, now(), now(), 1)
+	</insert>
+
+	<update id="updateResumeOpusInfo" parameterType="ResumeOpusInfoDTO">
+		update
+		resume_opus_info set resume_id=#{resumeId}, opus_name=#{opusName},
+		opus_url=#{opusUrl}, opus_path=#{opusPath}, update_time=now() where status>0 and id=#{id}
+	</update>
+
+	<update id="deleteResumeOpusInfo" parameterType="int">
+		update
+		resume_opus_info set status=-1, update_time=now() where id=#{id} and
+		status>0
+	</update>
+
+	<select id="queryResumeOpusInfo" parameterType="int"
+		resultMap="resumeOpusInfoMap">
+		select id, resume_id, opus_name, opus_url, opus_path, create_time,
+		update_time, status from resume_opus_info where status>0 and id=#{id}
+	</select>
+
+	<select id="queryResumeOpusInfos" parameterType="int"
+		resultMap="resumeOpusInfoMap">
+		select id, resume_id, opus_name, opus_url, opus_path, create_time,
+		update_time, status from resume_opus_info where status>0 and
+		resume_id=#{resumeId}
+	</select>
+
+</mapper>

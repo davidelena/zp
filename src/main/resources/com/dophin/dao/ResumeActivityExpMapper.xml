@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dophin.dao.ResumeActivityExpDAO">
+
+	<resultMap type="ResumeActivityExpDTO" id="resumeActivityExpMap">
+		<id property="id" column="id" />
+		<result property="resumeId" column="resume_id" />
+		<result property="activityName" column="activity_name" />
+		<result property="positionName" column="position_name" />
+		<result property="startTime" column="start_time" />
+		<result property="endTime" column="end_time" />
+		<result property="activityDesc" column="activity_desc" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<insert id="insertResumeActivityExp" parameterType="ResumeActivityExpDTO"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into resume_activity_exp
+		(resume_id, activity_name, position_name, start_time, end_time,
+		activity_desc, create_time, update_time, status) values
+		(#{resumeId},
+		#{activityName}, #{positionName}, #{startTime}, #{endTime},
+		#{activityDesc},
+		now(), now(), 1)
+	</insert>
+
+	<update id="updateResumeActivityExp" parameterType="ResumeActivityExpDTO">
+		update
+		resume_activity_exp set resume_id=#{resumeId},
+		activity_name=#{activityName},
+		position_name=#{positionName},
+		start_time=#{startTime}, end_time=#{endTime},
+		activity_desc=#{activityDesc},
+		update_time=now() where status>0
+		and
+		id=#{id}
+	</update>
+
+	<update id="deleteResumeActivityExp" parameterType="int">
+		update
+		resume_activity_exp set status=-1, update_time=now() where id=#{id}
+		and
+		status>0
+	</update>
+
+	<select id="queryResumeActivityExp" parameterType="int"
+		resultMap="resumeActivityExpMap">
+		select id, resume_id, activity_name, position_name,
+		start_time, end_time,
+		activity_desc, create_time, update_time, status
+		from
+		resume_activity_exp where status>0 and id=#{id}
+	</select>
+
+	<select id="queryResumeActivityExps" parameterType="int"
+		resultMap="resumeActivityExpMap">
+		select id, resume_id, activity_name, position_name,
+		start_time, end_time,
+		activity_desc, create_time, update_time, status
+		from
+		resume_activity_exp where status>0 and resume_id=#{resumeId}
+	</select>
+
+</mapper>

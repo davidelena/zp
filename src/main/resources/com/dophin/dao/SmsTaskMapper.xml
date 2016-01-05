@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dophin.dao.SmsDAO">
+
+	<!-- smscode start -->
+	<resultMap type="SmsCodeDTO" id="smsCodeMap">
+		<id property="id" column="id" />
+		<result property="mobile" column="mobile" />
+		<result property="code" column="code" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<insert id="insertSmsCode" parameterType="SmsCodeDTO"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into sms_code (mobile,
+		code, create_time, update_time, status) values (#{mobile}, #{code},
+		now(), now(), 1)
+	</insert>
+
+	<update id="updateSmsCode" parameterType="SmsCodeDTO">
+		update sms_code set
+		mobile=#{mobile}, code=#{code}, update_time=now() where status>0 and
+		id=#{id}
+	</update>
+
+	<select id="querySmsCode" parameterType="Map" resultMap="smsCodeMap">
+		select
+		id, mobile, code, create_time, update_time, status from sms_code where
+		status>0 and (id=#{id} or mobile=#{mobile})
+	</select>
+
+	<update id="deleteSmsCode" parameterType="Map">
+		update sms_code set
+		status=-1 and update_time=now() where status>0
+		<if test="id!=null">
+			and id=#{id}
+		</if>
+		<if test="mobile!=null">
+			and mobile=#{mobile}
+		</if>
+	</update>
+
+	<select id="isSmsCodeExists" parameterType="Map" resultType="int">
+		select count(0) as count from sms_code where status>0 and
+		(id=#{id} or
+		mobile=#{mobile})
+	</select>
+
+	<!-- smscode end -->
+
+	<!-- smslog start -->
+
+	<resultMap type="SmsLogDTO" id="smsLogMap">
+		<id property="id" column="id" />
+		<result property="mobile" column="mobile" />
+		<result property="content" column="content" />
+		<result property="smsType" column="sms_type" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<insert id="insertSmsLog" parameterType="SmsLogDTO"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into sms_log (mobile,
+		content, sms_type, create_time, update_time, status) values
+		(#{mobile}, #{content}, #{smsType},
+		now(), now(), 1)
+	</insert>
+
+	<update id="updateSmsLog" parameterType="SmsLogDTO">
+		update sms_log set
+		mobile=#{mobile}, content=#{content}, sms_type=#{smsType},
+		update_time=now() where status>0 and
+		id=#{id}
+	</update>
+
+	<select id="querySmsLog" parameterType="Map" resultMap="smsLogMap">
+		select
+		id, mobile, content, sms_type, create_time, update_time, status from
+		sms_log where status>0 and (id=#{id} or mobile=#{mobile})
+	</select>
+
+	<select id="querySmsLogs" resultMap="smsLogMap">
+		select
+		id, mobile, content,
+		sms_type, create_time, update_time, status from
+		sms_log where status>0
+	</select>
+
+	<update id="deleteSmsLog" parameterType="int">
+		update sms_log set
+		status=-1,
+		update_time=now() where status>0 and
+		id=#{id}
+
+	</update>
+
+	<!-- smslog end -->
+</mapper>

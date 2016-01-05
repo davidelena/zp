@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dophin.dao.ResumeWorkExpDAO">
+
+	<resultMap type="ResumeWorkExpDTO" id="resumeWorkExpMap">
+		<id property="id" column="id" />
+		<result property="resumeId" column="resume_id" />
+		<result property="companyName" column="company_name" />
+		<result property="positionName" column="position_name" />
+		<result property="startTime" column="start_time" />
+		<result property="endTime" column="end_time" />
+		<result property="workDescription" column="work_description" />
+		<result property="createTime" column="create_time" />
+		<result property="startTime" column="update_time" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<insert id="insertResumeWorkExp" parameterType="ResumeWorkExpDTO"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into resume_work_exp
+		(resume_id, company_name, position_name, start_time, end_time,
+		work_description, create_time,
+		update_time, status) values
+		(#{resumeId},
+		#{companyName}, #{positionName}, #{startTime},
+		#{endTime},
+		#{workDescription}, now(), now(), 1)
+	</insert>
+
+	<update id="updateResumeWorkExp" parameterType="ResumeWorkExpDTO">
+		update
+		resume_work_exp set resume_id=#{resumeId},
+		company_name=#{companyName},
+		position_name=#{positionName},
+		start_time=#{startTime}, end_time=#{endTime},
+		work_description=#{workDescription}, update_time=now() where status>0
+		and id=#{id}
+	</update>
+
+	<update id="deleteResumeWorkExp" parameterType="int">
+		update
+		resume_work_exp set status=-1, update_time=now() where id=#{id}
+		and
+		status>0
+	</update>
+
+	<select id="queryResumeWorkExp" parameterType="int" resultMap="resumeWorkExpMap">
+		select id, resume_id, company_name, position_name, start_time,
+		end_time,
+		work_description, create_time,
+		update_time, status from
+		resume_work_exp
+		where status>0 and id=#{id}
+	</select>
+
+	<select id="queryResumeWorkExps" parameterType="Map"
+		resultMap="resumeWorkExpMap">
+		select id, resume_id, company_name, position_name,
+		start_time,
+		end_time,
+		work_description, create_time,
+		update_time, status
+		from
+		resume_work_exp
+		where status>0
+		<if test="resumeId!=null">
+			and resume_id=#{resumeId}
+		</if>
+	</select>
+
+</mapper>

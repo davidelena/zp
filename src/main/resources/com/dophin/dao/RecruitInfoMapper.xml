@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dophin.dao.RecruitInfoDAO">
+
+	<resultMap type="RecruitInfoDTO" id="recruitInfoMap">
+		<id property="id" column="id" />
+		<result property="memberId" column="member_id" />
+		<result property="companyId" column="company_id" />
+		<result property="recruitType" column="recruit_type" />
+		<result property="positionType" column="position_type" />
+		<result property="positionName" column="position_name" />
+		<result property="departmentName" column="dept_name" />
+		<result property="postDuty" column="post_duty" />
+		<result property="workAddress" column="work_address" />
+		<result property="minSalary" column="min_salary" />
+		<result property="maxSalary" column="max_salary" />
+		<result property="negotiable" column="negotiable" />
+		<result property="importantRemark" column="important_remark" />
+		<result property="needNum" column="need_num" />
+		<result property="acceptEmail" column="accept_email" />
+		<result property="emailType" column="email_type" />
+		<result property="validityTime" column="validity_time" />
+		<result property="school" column="school" />
+		<result property="major" column="major" />
+		<result property="educational" column="educational" />
+		<result property="score" column="score" />
+		<result property="internshipDays" column="internship_days" />
+		<result property="internshipExp" column="internship_exp" />
+		<result property="activityExp" column="activity_exp" />
+		<result property="skill" column="skill" />
+		<result property="skillLevel" column="skill_level" />
+		<result property="english" column="english_language" />
+		<result property="otherLanguage" column="other_language" />
+		<result property="positionAvailable" column="position_available" />
+		<result property="invitePost" column="invite_post" />
+		<result property="otherClaim" column="other_claim" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="positionStatus" column="position_status" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<insert id="insertRecruitInfo" parameterType="RecruitInfoDTO"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into recruit_info
+		(member_id, company_id, recruit_type, position_type, position_name,
+		dept_name, post_duty, work_address, min_salary, max_salary,
+		negotiable, important_remark,
+		need_num, accept_email, email_type,
+		validity_time, school, major, educational, score, internship_days,
+		internship_exp,
+		activity_exp, skill, skill_level, english_language,
+		other_language,
+		position_available, invite_post, other_claim,
+		create_time, update_time,
+		position_status, status) values (#{memberId},
+		#{companyId},
+		#{recruitType}, #{positionType},
+		#{positionName},
+		#{departmentName},
+		#{postDuty}, #{workAddress}, #{minSalary},
+		#{maxSalary},
+		#{negotiable},
+		#{importantRemark}, #{needNum},
+		#{acceptEmail},
+		#{emailType}, #{validityTime}, #{school}, #{major},
+		#{educational},
+		#{score}, #{internshipDays}, #{internshipExp},
+		#{activityExp},
+		#{skill}, #{skillLevel}, #{english},
+		#{otherLanguage},
+		#{positionAvailable},
+		#{invitePost},
+		#{otherClaim},
+		#{createTime},
+		#{updateTime},
+		#{positionStatus}, #{status})
+	</insert>
+
+	<update id="updateRecruitInfo" parameterType="RecruitInfoDTO">
+		update recruit_info
+		set member_id=#{memberId}, company_id=#{companyId},
+		recruit_type=#{recruitType},
+		position_type=#{positionType},
+		position_name=#{positionName}, dept_name=#{departmentName},
+		post_duty=#{postDuty},
+		work_address=#{workAddress},
+		min_salary=#{minSalary},
+		max_salary=#{maxSalary},
+		negotiable=#{negotiable},
+		important_remark=#{importantRemark},
+		need_num=#{needNum},
+		accept_email=#{acceptEmail},
+		email_type=#{emailType},
+		validity_time=#{validityTime},
+		school=#{school},
+		major=#{major},
+		educational=#{educational},
+		score=#{score},
+		internship_days=#{internshipDays},
+		internship_exp=#{internshipExp},
+		activity_exp=#{activityExp},
+		skill=#{skill},
+		skill_level=#{skillLevel},
+		english_language=#{english},
+		other_language=#{otherLanguage},
+		position_available=#{positionAvailable},
+		invite_post=#{invitePost},
+		other_claim=#{otherClaim},
+		create_time=#{createTime},
+		update_time=#{updateTime},
+		position_status=#{positionStatus},
+		status=#{status } where status>0 and id=#{id}
+	</update>
+
+	<update id="deleteRecruitInfo" parameterType="int">
+		update recruit_info
+		set status=-1 where status>0 and id=#{id}
+	</update>
+
+	<select id="queryRecruitInfo" parameterType="Map" resultMap="recruitInfoMap">
+		select id, member_id, company_id, recruit_type, position_type,
+		position_name,
+		dept_name, post_duty, work_address,
+		min_salary,
+		max_salary, negotiable, important_remark,
+		need_num,
+		accept_email,
+		email_type, validity_time, school, major, educational,
+		score,
+		internship_exp, internship_days,
+		activity_exp, skill, skill_level,
+		english_language,
+		other_language, position_available, invite_post,
+		other_claim,
+		create_time, update_time, position_status, status from
+		recruit_info
+		where status>0
+		<if test="id!=null">
+			and id=#{id}
+		</if>
+	</select>
+
+	<select id="queryRecruitInfos" resultMap="recruitInfoMap">
+		select id, member_id,
+		company_id, recruit_type, position_type,
+		position_name,
+		dept_name,
+		post_duty, work_address,
+		min_salary,
+		max_salary, negotiable,
+		important_remark,
+		need_num,
+		accept_email,
+		email_type, validity_time,
+		school, major, educational,
+		score,
+		internship_exp, internship_days,
+		activity_exp, skill, skill_level,
+		english_language,
+		other_language,
+		position_available, invite_post,
+		other_claim,
+		create_time, update_time,
+		position_status, status from
+		recruit_info
+		where status>0
+		<if test="memberId!=null">
+			and member_id=#{memberId}
+		</if>
+		<if test="companyId!=null">
+			and company_id=#{companyId}
+		</if>
+		<if test="ids!=null">
+			and id in (${ids})
+		</if>
+		<if test="positionStatus!=null">
+			and position_status=#{positionStatus}
+		</if>
+		order by create_time desc
+		<if test="(start!=null and start>=0) and (size!=null and size>0)">
+			limit #{start}, #{size}
+		</if>
+	</select>
+
+	<select id="queryRecruitInfosCount" resultType="int">
+		select count(0) as count from
+		recruit_info
+		where status>0
+		<if test="memberId!=null">
+			and member_id=#{memberId}
+		</if>
+		<if test="companyId!=null">
+			and company_id=#{companyId}
+		</if>
+		<if test="ids!=null">
+			and id in (${ids})
+		</if>
+		<if test="positionStatus!=null">
+			and position_status=#{positionStatus}
+		</if>
+		<if test="(start!=null and start>=0) and (size!=null and size>0)">
+			limit #{start}, #{size}
+		</if>
+	</select>
+
+</mapper>

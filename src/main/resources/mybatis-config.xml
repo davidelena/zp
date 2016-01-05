@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+	<mappers>
+		<mapper resource="com/dophin/dao/MemberMapper.xml" />
+		<mapper resource="com/dophin/dao/EmailTaskMapper.xml" />
+		<mapper resource="com/dophin/dao/SmsTaskMapper.xml" />
+		<mapper resource="com/dophin/dao/ConstantsMapper.xml" />
+		<mapper resource="com/dophin/dao/StudentMemberMapper.xml" />
+		<mapper resource="com/dophin/dao/CompanyMemberMapper.xml" />
+		<mapper resource="com/dophin/dao/PartnerBindingMapper.xml" />
+		<mapper resource="com/dophin/dao/ResumeInfoMapper.xml" />
+		<mapper resource="com/dophin/dao/ResumeEducationExpMapper.xml" />
+		<mapper resource="com/dophin/dao/ResumeWorkExpMapper.xml" />
+		<mapper resource="com/dophin/dao/ResumeSpecialtySkillMapper.xml" />
+		<mapper resource="com/dophin/dao/ResumeActivityExpMapper.xml" />
+		<mapper resource="com/dophin/dao/ResumeProjectExpMapper.xml" />
+		<mapper resource="com/dophin/dao/ResumePrizeInfoMapper.xml" />
+		<mapper resource="com/dophin/dao/ResumeHobbySpecialMapper.xml" />
+		<mapper resource="com/dophin/dao/ResumeSocialNetMapper.xml" />
+		<mapper resource="com/dophin/dao/ResumeOpusInfoMapper.xml" />
+		<mapper resource="com/dophin/dao/ResumeCustomMapper.xml" />
+		<mapper resource="com/dophin/dao/RecruitInfoMapper.xml" />
+		<mapper resource="com/dophin/dao/MemberRecruitMapper.xml" />
+		<mapper resource="com/dophin/dao/ApplyFeedBackMapper.xml" />
+		<mapper resource="com/dophin/dao/MyApplicantMapper.xml" />
+		<mapper resource="com/dophin/dao/InformInterviewMapper.xml" />
+	</mappers>
+</configuration>

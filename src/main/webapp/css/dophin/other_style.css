@@ -1,0 +1,813 @@
+@charset "utf-8";
+/* CSS Document */
+body,div,ul,li,img,a,h1,h3,h4,h5,h6,p,input,span,form,select,option,textarea,span
+	{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+a {
+	display: block;
+	text-decoration: none;
+	font-family: "Microsoft YaHei";
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.clearFix:after {
+	clear: both;
+	display: block;
+	visibility: didden;
+	height: 0;
+	line-height: 0;
+	content: ".";
+}
+
+.clearFix: {
+	zoom: 1;
+}
+
+body {
+	background: #F8F8F8; 
+}
+
+body {
+	font-family: "Microsoft YaHei";
+}
+/*------------choose.html-----------*/
+ul li {
+	list-style: none;
+}
+
+.schoolName {
+	width: 200px;
+}
+
+.search .searchSchool {
+	border: none;
+}
+
+.provinceSchool {
+	display: none;
+	background-color: #F0F0F0;
+	position: absolute;
+	width: 580px;
+	height: 450px;
+	border: 1px solid #72B9D7;
+}
+
+.provinceSchool .Sch_title {
+	width: 100%;
+	height: 30px;
+}
+
+.provinceSchool .Sch_title span {
+	margin-left: 12px;
+	font-weight: 600;
+	color: #3c3c3c;
+	line-height: 30px;
+}
+
+.provinceSchool .proSelect {
+	width: 550px;
+	height: 22px;
+	margin: 0px 0 6px 15px;
+}
+
+.provinceSchool .proSelect select {
+	width: 136px;
+}
+
+.provinceSchool .proSelect input {
+	display: none;
+}
+
+.provinceSchool .proSelect span {
+	font-size: 12px;
+}
+
+.provinceSchool .schoolList {
+	width: 550px;
+	height: 200px;
+	margin-top: 30px;
+	margin-left: 15px;
+	overflow-y: auto;
+	border: 1px solid #72B9D7;
+}
+
+.provinceSchool .schoolList ul {
+	width: 510px;
+}
+
+.provinceSchool .schoolList ul li {
+	float: left;
+	width: 158px;
+	height: 22px;
+	margin-left: 6px;
+	padding-left: 6px;
+	line-height: 22px;
+	cursor: pointer;
+}
+
+.provinceSchool .schoolList ul li .DoubleWidthLi {
+	width: 328px;
+}
+
+.provinceSchool .schoolList ul li:hover {
+	background: #72B9D7;
+}
+
+.provinceSchool .button {
+	width: 100%;
+	height: 40px;
+	margin-top: 8px;
+}
+
+.provinceSchool .button button {
+	float: right;
+	height: 30px;
+	margin-right: 20px;
+	padding: 4px 10px;
+	background: #026BBC;
+	border: none;
+	color: #fff;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.btn {
+	height: 20px;
+	margin-right:;
+	padding: 0px 10px;
+	background: #026BBC;
+	border: none;
+	color: #fff;
+	font-weight: 600;
+	cursor: pointer;
+}
+/*--------------*/
+.search span {
+	font-size: 12px;
+	margin-left: 12px;
+}
+
+/* fieldset {
+	border: none;
+	width: 165px;
+	height: 22px;
+	margin-left: 7px;
+	padding-left: 7px;
+	line-height: 22px;
+	cursor: pointer;
+} */
+.none {
+	margin-top: 15px;
+}
+
+.none span {
+	font-size: 12px;
+	margin-left: 12px;
+}
+
+.none select {
+	margin-left: 14px;
+}
+
+.searchSchool {
+	width: 240px;
+	margin-top: 5px;
+}
+/*------------Co_forgetpsw.html-----------*/
+.coFP_blank {
+	height: 100px;
+}
+
+.coFP_body {
+	height: 380px;
+	width: 940px;
+	background-color: #c9c9c9;
+	margin: 0 auto 40px auto;
+	position: relative;
+}
+
+.coFP_body .coFP_left {
+	height: 340px;
+	width: 330px;
+	border-right: 2px dashed #616161;
+	position: absolute;
+	top: 20px;
+}
+
+.coFP_left .coFP_pic {
+	width: 200px;
+	height: 200px;
+	margin: 10px 60px;
+}
+
+.coFP_left .coFP_text {
+	width: 200px;
+	margin: 5px 60px;
+}
+
+.coFP_body .coFP_right {
+	height: 440px;
+	width: 580px;
+	position: absolute;
+	top: 20px;
+	right: 0;
+}
+
+.coFP_body .coFP_right h1,h3 {
+	color: #2178be;
+	margin-bottom: 30px;
+	margin-left: 30px;
+}
+
+.coFP_body .coFP_right h3 {
+	margin-bottom: 30px;
+}
+
+.coFP_user {
+	border: none;
+	height: 50px;
+	width: 505px;
+	font-size: 14px;
+	text-indent: 2em;
+	margin-left: 30px;
+	margin-top: 30px;
+}
+
+.coFP_user::-webkit-input-placeholder {
+	color: #999;
+	font-size: 14px;
+	text-indent: 2em;
+	-webkit-transition: color.5s;
+}
+
+.coFP_user:focus::-webkit-input-placeholder,input:hover::-webkit-input-placeholder
+	{
+	color: #c2c2c2;
+	font-size: 14px;
+	text-indent: 2em;
+	-webkit-transition: color.5s;
+}
+
+.coFP_findBotton {
+	-moz-box-shadow: inset 0px 1px 0px 0px #0268b6;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #0268b6;
+	box-shadow: inset 0px 1px 0px 0px #0268b6;
+	background-color: #335cc4;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: "Microsoft YaHei";
+	font-size: 20px;
+	font-weight: bold;
+	padding: 12px 192px;
+	text-decoration: none;
+	position: absolute;
+	top: 260px;
+	right: 45px;
+}
+
+.coFP_findBotton:hover {
+	background-color: #2150a6;
+}
+
+.coFP_findBotton:active {
+	position: absolute;
+	:260
+	px;
+}
+/*------------Co_sidebar open.html-----------*/
+.menuOpened {
+	width: 200px;
+	height: 100%;
+	float: left;
+	position: fixed;
+}
+
+.menuOpened ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	background: #313131;
+}
+
+.menuOpened ul li {
+	width: 180px;
+	margin: 0 auto;
+	border-bottom: 1px solid #5c5c5c;
+}
+
+.menuOpened a {
+	text-decoration: none;
+	color: #eaebec;
+	padding: 20px 0;
+	position: relative;
+}
+
+.menuOpened p {
+	display: inline;
+	position: absolute;
+	margin-top: 15px;
+}
+
+.menuOpened ul img {
+	height: 50px;
+	width: auto;
+	margin: 0px 5px;
+}
+/*------------sideBar open.html-----------*/
+.stu_menuOpened {
+	width: 200px;
+	height: 100%;
+	float: left;
+	position: fixed;
+}
+
+.stu_menuOpened2 {
+	width: 200px;
+	height: 100%;
+	float: left;
+}
+
+.stu_menuOpened ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	background: #313131;
+}
+
+.stu_menuOpened ul li {
+	width: 180px;
+	margin: 0 auto;
+	border-bottom: 1px solid #5c5c5c;
+}
+
+.stu_menuOpened a {
+	text-decoration: none;
+	color: #eaebec;
+	padding: 20px 0;
+	position: relative;
+}
+
+.stu_menuOpened p {
+	display: inline;
+	position: absolute;
+	margin-top: 15px;
+}
+
+.stu_menuOpened ul img {
+	height: 50px;
+	width: auto;
+	margin: 0px 5px;
+}
+/*------------forgetpsw.html-----------*/
+.stuFP_blank {
+	height: 100px;
+}
+
+.stuFP_body {
+	height: 380px;
+	width: 940px;
+	background-color: #c9c9c9;
+	margin: 0 auto 40px auto;
+	position: relative;
+}
+
+.stuFP_body .stuFP_left {
+	height: 340px;
+	width: 330px;
+	border-right: 2px dashed #616161;
+	position: absolute;
+	top: 20px;
+}
+
+.stuFP_left .stuFP_pic {
+	width: 200px;
+	height: 200px;
+	margin: 10px 60px;
+}
+
+.stuFP_left .stuFP_text {
+	width: 200px;
+	margin: 5px 60px;
+}
+
+.stuFP_body .stuFP_right {
+	height: 440px;
+	width: 580px;
+	position: absolute;
+	top: 20px;
+	right: 0;
+}
+
+.stuFP_body .stuFP_right h1,h3 {
+	color: #2178be;
+	margin-bottom: 15px;
+}
+
+.stuFP_body .stuFP_right h3 {
+	margin-bottom: 30px;
+}
+
+.stuFP_user,.stuFP_code {
+	border: none;
+	height: 50px;
+	width: 505px;
+	font-size: 14px;
+	text-indent: 2em;
+	margin-left: 30px;
+	margin-bottom: 20px;
+}
+
+.stuFP_user,.stuFP_code::-webkit-input-placeholder {
+	color: #999;
+	font-size: 14px;
+	text-indent: 2em;
+	-webkit-transition: color.5s;
+}
+
+.stuFP_user,.stuFP_code:focus::-webkit-input-placeholder,input:hover::-webkit-input-placeholder
+	{
+	color: #c2c2c2;
+	font-size: 14px;
+	text-indent: 2em;
+	-webkit-transition: color.5s;
+}
+
+.stuFP_code {
+	height: 50px;
+	width: 250px;
+	text-indent: 2em;
+}
+
+.stuFP_codeBotton {
+	-moz-box-shadow: inset 0px 1px 0px 0px #0268b6;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #0268b6;
+	box-shadow: inset 0px 1px 0px 0px #0268b6;
+	background-color: #335cc4;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: "Microsoft YaHei";
+	font-size: 20px;
+	font-weight: bold;
+	padding: 12px 60px;
+	text-decoration: none;
+	position: absolute;
+	top: 182px;
+	right: 45px;
+}
+
+.stuFP_codeBotton:hover {
+	background-color: #2150a6;
+}
+
+.stuFP_codeBotton:active {
+	position: absolute;
+	top: 192px;
+}
+
+.stuFP_findBotton {
+	-moz-box-shadow: inset 0px 1px 0px 0px #0268b6;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #0268b6;
+	box-shadow: inset 0px 1px 0px 0px #0268b6;
+	background-color: #335cc4;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: "Microsoft YaHei";
+	font-size: 20px;
+	font-weight: bold;
+	padding: 12px 192px;
+	text-decoration: none;
+	position: absolute;
+	top: 280px;
+	right: 45px;
+}
+
+.stuFP_findBotton:hover {
+	background-color: #2150a6;
+}
+
+.stuFP_findBotton:active {
+	position: absolute;
+	:260
+	px;
+}
+/*------------save_success.html-----------*/
+.popUp {
+	border: 1px solid #3c3c3c;
+	width: 500px;
+	height: 300px;
+	margin: 0 auto;
+	background-color: #ffffff;
+	position: relative;
+	top: 50px;
+}
+
+.popUp h4 {
+	background-color: #5185AE;
+	height: 60px;
+	width: 100%;
+	line-height: 60px;
+	text-align: center;
+	color: #ffffff;
+	margin: 0 auto;
+}
+
+.popUp .PUqrCode {
+	width: 200px;
+	height: 200px;
+	margin: 0 15px;
+}
+
+.popUp img {
+	height: 200px;
+	margin-top: 20px;
+}
+
+.popUp .PUtext {
+	color: #306E9E;
+	position: absolute;
+	top: 90px;
+	right: 40px;
+	line-height: 60px;
+	font-size: 18px;
+	font-weight: bold;
+}
+/*------------send_success.html-----------*/
+.popUp .PUtext2 {
+	color: #306E9E;
+	position: absolute;
+	top: 90px;
+	right: 20px;
+	line-height: 60px;
+	font-size: 18px;
+	font-weight: bold;
+}
+/*------------sendResume.html-----------*/
+.popUp2 {
+	border: 1px solid #3c3c3c;
+	width: 500px;
+	height: 300px;
+	margin: 0 auto;
+	background-color: #E0E0E0;
+	position: relative;
+	top: 50px;
+}
+
+.popUp2 .uploadbtn {
+	float: left;
+	-moz-box-shadow: inset 0px 1px 0px 0px #0268b6;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #0268b6;
+	box-shadow: inset 0px 1px 0px 0px #0268b6;
+	background-color: #335cc4;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: "Microsoft YaHei";
+	font-size: 20px;
+	font-weight: bold;
+	padding: 10px 50px;
+	text-decoration: none;
+	position: absolute;
+	top: 200px;
+	right: 140px;
+}
+
+.popUp2 .uploadbtn:hover {
+	background-color: #2150a6;
+}
+/*---*/
+.popUp2 h4 {
+	text-align: center;
+	color: #333333;
+	margin: 20px auto;
+	width: 500px;
+}
+
+.popUp2 h5 {
+	color: #014D88;
+	margin: 20px 30px;
+	position: absolute;
+	top: 60px;
+}
+
+.popUp2 .edit {
+	height: 20px;
+	line-height: 20px;
+	font-size: 14px;
+	position: absolute;
+	top: 130px;
+	right: 50px;
+}
+
+.popUp2 .edit a {
+	display: inline;
+	margin: 0 5px;
+	color: #026BBC;
+	text-decoration: underline;
+}
+
+.popUp2 .mn {
+	border: none;
+	height: 30px;
+	width: 140px;
+	font-size: 14px;
+	text-indent: 2em;
+	margin-top: 60px;
+	margin-left: 30px;
+	float: left;
+}
+
+.popUp2 .mn::-webkit-input-placeholder {
+	color: #999;
+	font-size: 14px;
+	text-indent: 2em;
+	-webkit-transition: color.5s;
+}
+
+.popUp2 .mn:focus::-webkit-input-placeholder,input:hover::-webkit-input-placeholder
+	{
+	color: #c2c2c2;
+	font-size: 14px;
+	text-indent: 2em;
+	-webkit-transition: color.5s;
+}
+
+.popUp2 .row {
+	margin-right: 15px;
+	float: left;
+}
+/*------------upload_attached.html-----------*/
+.popUp3 {
+	border: 1px solid #3c3c3c;
+	width: 500px;
+	height: 300px;
+	margin: 0 auto;
+	background-color: #ffffff;
+	position: relative;
+	top: 50px;
+}
+/*---*/
+.popUp3 .uploadbtn {
+	float: left;
+	-moz-box-shadow: inset 0px 1px 0px 0px #0268b6;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #0268b6;
+	box-shadow: inset 0px 1px 0px 0px #0268b6;
+	background-color: #335cc4;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: "Microsoft YaHei";
+	font-size: 20px;
+	font-weight: bold;
+	padding: 10px 50px;
+	text-decoration: none;
+	position: absolute;
+	top: 80px;
+	right: 140px;
+}
+
+.popUp3 .uploadbtn:hover {
+	background-color: #2150a6;
+}
+/*---*/
+.popUp3 h4 {
+	text-align: center;
+	width: 500px;
+	color: #333333;
+	margin: 20px auto;
+}
+
+.popUp3 h6 {
+	color: #014D88;
+	text-align: center;
+	width: 460px;
+	position: absolute;
+	top: 150px;
+	display: block;
+}
+
+.popUp3 p {
+	color: #333333;
+	margin: 20px 30px;
+	position: absolute;
+	top: 200px;
+}
+/*---------翻页--------*/
+.Pagination_myself {
+	line-height: 30px;
+	margin: 20px 0;
+	overflow: hidden;
+	outline: medium none;
+}
+
+.Pagination_myself::-moz-selection {
+	background: #019875 none repeat scroll 0 0;
+	color: white;
+}
+
+.Pagination_myself a,.Pagination_myself span {
+	background: #313131 none repeat scroll 0 0;
+	color: #fff;
+	float: left;
+	height: 30px;
+	line-height: 30px;
+	margin: 0 10px 10px 0;
+	padding: 0 10px;
+	transition: all 0.2s ease 0s;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.Pagination_myself a:hover {
+	background: #676767 none repeat scroll 0 0;
+	color: white;
+}
+
+.pagination_myself_current {
+	background: #676767 none repeat scroll 0 0
+}
+/*---------checkfinished.html--------*/
+.stuCFi_blank {
+	height: 100px;
+}
+
+.stuCFi_body {
+	height: 380px;
+	width: 940px;
+	background-color: #c9c9c9;
+	margin: 0 auto 40px auto;
+	position: relative;
+}
+
+.stuCFi_body .stuCFi_left {
+	height: 340px;
+	width: 330px;
+	border-right: 2px dashed #616161;
+	position: absolute;
+	top: 20px;
+}
+
+.stuCFi_body .stuCFi_right {
+	height: 440px;
+	width: 580px;
+	position: absolute;
+	top: 20px;
+	right: 0;
+}
+
+.stuCFi_body .stuCFi_right h1,h3 {
+	color: #2178be;
+	margin-bottom: 15px;
+}
+
+.stuCFi_body .stuCFi_right h3 {
+	margin-bottom: 30px;
+}
+
+.stuCFi_findBotton {
+	-moz-box-shadow: inset 0px 1px 0px 0px #0268b6;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #0268b6;
+	box-shadow: inset 0px 1px 0px 0px #0268b6;
+	background-color: #335cc4;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: "Microsoft YaHei";
+	font-size: 20px;
+	font-weight: bold;
+	padding: 12px 192px;
+	text-decoration: none;
+	position: absolute;
+	top: 280px;
+	right: 45px;
+}
+
+.stuCFi_findBotton:hover {
+	background-color: #2150a6;
+}
+
+.stuCFi_right h1,h3,h6 {
+	margin-left: 20px;
+}
+
+.stuCFi_right h6 {
+	display: block;
+	margin-bottom: 10px;
+}
+
+.stuCFi_right h6 a {
+	display: inline;
+}

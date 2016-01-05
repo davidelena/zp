@@ -1,0 +1,410 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.dophin</groupId>
+	<artifactId>first-portal</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>first-portal Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring.version>4.0.3.RELEASE</spring.version>
+		<junit.version>4.11</junit.version>
+		<log4j.version>1.2.17</log4j.version>
+		<org.mybatis-version>3.0.6</org.mybatis-version>
+		<org.mybatis-spring-version>1.0.2</org.mybatis-spring-version>
+		<c3p0.version>0.9.2.1</c3p0.version>
+		<jedis.version>2.5.1</jedis.version>
+		<flexjson.version>2.1</flexjson.version>
+		<commons-dbcp.version>1.4</commons-dbcp.version>
+		<commons-logging.version>1.1.3</commons-logging.version>
+		<org.aspectj.version>1.7.4</org.aspectj.version>
+	</properties>
+
+	<dependencies>
+
+		<!-- common start -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.26</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.3.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.flexjson</groupId>
+			<artifactId>flexjson</artifactId>
+			<version>${flexjson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${org.aspectj.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${org.aspectj.version}</version>
+		</dependency>
+
+		<!-- <dependency> <groupId>com.101tec</groupId> <artifactId>zkclient</artifactId> 
+			<version>0.3</version> </dependency> -->
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet.jsp.jstl</groupId>
+			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+
+		<!-- <dependency> <groupId>org.apache.httpcomponents</groupId> <artifactId>httpclient</artifactId> 
+			<version>4.3.6</version> </dependency> <dependency> <groupId>org.apache.httpcomponents</groupId> 
+			<artifactId>httpcore</artifactId> <version>4.3.2</version> </dependency> -->
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-email</artifactId>
+			<version>1.3.3</version>
+		</dependency>
+
+		<!-- common end -->
+
+		<!-- db-pool start -->
+		<!-- <dependency> <groupId>commons-dbcp</groupId> <artifactId>commons-dbcp</artifactId> 
+			<version>${commons-dbcp.version}</version> </dependency> -->
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.1.2</version>
+		</dependency>
+		<!-- db-pool end -->
+
+		<!-- mybaits begin -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>${org.mybatis-spring-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${org.mybatis-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib-nodep</artifactId>
+			<version>2.2</version>
+		</dependency>
+		<!-- mybaits end -->
+
+		<!-- SPRING begin -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>${commons-logging.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>1.10</version>
+		</dependency>
+
+		<!-- SPRING end -->
+
+		<!-- Test dependencies Start -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- Test dependencies End -->
+
+		<!-- jackson start -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.5.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.5.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.5.1</version>
+		</dependency>
+
+		<!-- jackson end -->
+
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<version>3.0.9.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-client</artifactId>
+			<version>3.0.9.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.elasticsearch</groupId>
+			<artifactId>elasticsearch</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+
+		<!-- upload -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.qiniu</groupId>
+			<artifactId>qiniu-java-sdk</artifactId>
+			<version>[7.0.0, 7.0.99]</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.7</version>
+		</dependency>
+
+		<!-- qr code -->
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>core</artifactId>
+			<version>2.0</version>
+		</dependency>
+
+	</dependencies>
+	<build>
+
+		<finalName>zp</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<uriEncoding>UTF-8</uriEncoding>
+					<path>/zp</path>
+					<port>80</port>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering><!-- 是否使用过滤器 -->
+			</resource>
+		</resources>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<db.url><![CDATA[jdbc:mysql://rdsn612tg99841qe29oho.mysql.rds.aliyuncs.com:3306/first_portal?useUnicode=true&amp;allowMultiQueries=true&amp;characterEncoding=utf-8]]></db.url>
+				<db.username>zpadmin</db.username>
+				<db.password>zp123456</db.password>
+				<context.url>www.zhancampus.com/first-portal</context.url>
+				<mail.smtp.host>smtp.mxhichina.com</mail.smtp.host>
+				<mail.user>us@zhancampus.com</mail.user>
+				<mail.password>diyiZHAN072315</mail.password>
+				<sms.appid>10346</sms.appid>
+				<sms.signature>2a122ee20d4c57d08c56c174e880ca73</sms.signature>
+				<sms.url>http://api.submail.cn/message/xsend.json</sms.url>
+				<sms.project.code>ZLsEP2</sms.project.code>
+				<elasticsearch.host>139.196.5.162</elasticsearch.host>
+				<elasticsearch.port>9300</elasticsearch.port>
+				<elasticsearch.dataIndex>firstportal</elasticsearch.dataIndex>
+				<qiniu.accesskey>5n3bnh2dQVnZF4cH6yTb3Vbqz_xWxpWzxbDTbww0</qiniu.accesskey>
+				<qiniu.secrectkey>OMaW_6fTFLHKd5CFkBnQ0JSZ18Hy6sONEgkj2keh</qiniu.secrectkey>
+				<qiniu.bucket>first-portal</qiniu.bucket>
+				<qiniu.file.domain>http://7xonvy.com2.z0.glb.qiniucdn.com</qiniu.file.domain>
+				<task.time>01:00:00</task.time>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<db.url><![CDATA[jdbc:mysql://rdsn612tg99841qe29oho.mysql.rds.aliyuncs.com:3306/first_portal?useUnicode=true&amp;allowMultiQueries=true&amp;characterEncoding=utf-8]]></db.url>
+				<db.username>zpadmin</db.username>
+				<db.password>zp123456</db.password>
+				<context.url>139.196.5.162/first-portal</context.url>
+				<mail.smtp.host>smtp.mxhichina.com</mail.smtp.host>
+				<mail.user>us@zhancampus.com</mail.user>
+				<mail.password>diyiZHAN072315</mail.password>
+				<sms.appid>10346</sms.appid>
+				<sms.signature>2a122ee20d4c57d08c56c174e880ca73</sms.signature>
+				<sms.url>http://api.submail.cn/message/xsend.json</sms.url>
+				<sms.project.code>ZLsEP2</sms.project.code>
+				<elasticsearch.host>139.196.5.162</elasticsearch.host>
+				<elasticsearch.port>9300</elasticsearch.port>
+				<elasticsearch.dataIndex>firstportal</elasticsearch.dataIndex>
+				<qiniu.accesskey>5n3bnh2dQVnZF4cH6yTb3Vbqz_xWxpWzxbDTbww0</qiniu.accesskey>
+				<qiniu.secrectkey>OMaW_6fTFLHKd5CFkBnQ0JSZ18Hy6sONEgkj2keh</qiniu.secrectkey>
+				<qiniu.bucket>first-portal</qiniu.bucket>
+				<qiniu.file.domain>http://7xonvy.com2.z0.glb.qiniucdn.com</qiniu.file.domain>
+				<task.time>01:00:00</task.time>
+			</properties>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<db.url><![CDATA[jdbc:mysql://121.41.72.42:3306/first_portal?useUnicode=true&amp;allowMultiQueries=true&amp;characterEncoding=utf-8]]></db.url>
+				<db.username>root</db.username>
+				<db.password>a578219zc</db.password>
+				<context.url>121.41.72.42/first-portal</context.url>
+				<mail.smtp.host>smtp.mxhichina.com</mail.smtp.host>
+				<mail.user>us@zhancampus.com</mail.user>
+				<mail.password>diyiZHAN072315</mail.password>
+				<sms.appid>10346</sms.appid>
+				<sms.signature>2a122ee20d4c57d08c56c174e880ca73</sms.signature>
+				<sms.url>http://api.submail.cn/message/xsend.json</sms.url>
+				<sms.project.code>ZLsEP2</sms.project.code>
+				<elasticsearch.host>121.41.72.42</elasticsearch.host>
+				<elasticsearch.port>9300</elasticsearch.port>
+				<elasticsearch.dataIndex>firstportal</elasticsearch.dataIndex>
+				<qiniu.accesskey>5n3bnh2dQVnZF4cH6yTb3Vbqz_xWxpWzxbDTbww0</qiniu.accesskey>
+				<qiniu.secrectkey>OMaW_6fTFLHKd5CFkBnQ0JSZ18Hy6sONEgkj2keh</qiniu.secrectkey>
+				<qiniu.bucket>first-portal</qiniu.bucket>
+				<qiniu.file.domain>http://7xonvy.com2.z0.glb.qiniucdn.com</qiniu.file.domain>
+				<task.time>01:00:00</task.time>
+			</properties>
+		</profile>
+	</profiles>
+</project>

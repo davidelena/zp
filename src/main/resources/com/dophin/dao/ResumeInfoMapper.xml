@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dophin.dao.ResumeInfoDAO">
+
+	<resultMap type="ResumeInfoDTO" id="resumeInfoMap">
+		<id property="id" column="id" />
+		<result property="memberId" column="member_id" />
+		<result property="resumeName" column="resume_name" />
+		<result property="avatar" column="avatar" />
+		<result property="sex" column="sex" />
+		<result property="major" column="major" />
+		<result property="diploma" column="diploma" />
+		<result property="graduationTime" column="graduation_time" />
+		<result property="graduationYear" column="graduation_year" />
+		<result property="uploadPath" column="upload_path" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<insert id="insertResumeInfo" parameterType="ResumeInfoDTO"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into resume_info
+		(member_id, resume_name, avatar, sex, major, diploma, graduation_time,
+		graduation_year,
+		upload_path, create_time, update_time, status)
+		values
+		(#{memberId},
+		#{resumeName}, #{avatar}, #{sex}, #{major}, #{diploma},
+		#{graduationTime}, #{graduationYear}, #{uploadPath}, now(), now(), 1)
+	</insert>
+
+	<update id="updateResumeInfo" parameterType="ResumeInfoDTO">
+		update resume_info
+		set member_id=#{memberId}, resume_name=#{resumeName},
+		avatar=#{avatar}, sex=#{sex},
+		major=#{major}, diploma=#{diploma},
+		graduation_time=#{graduationTime},
+		graduation_year=#{graduationYear},
+		upload_path=#{uploadPath},
+		update_time=now(), status=#{status}
+		where status>0 and id=#{id}
+	</update>
+
+	<update id="deleteResumeInfo" parameterType="int">
+		update resume_info
+		set status=-1, update_time=now() where status>0 and id=#{id}
+	</update>
+
+	<select id="queryResumeInfo" parameterType="int" resultMap="resumeInfoMap">
+		select r.id, r.member_id,
+		r.resume_name, r.avatar,
+		r.sex, r.major,
+		r.diploma,
+		r.graduation_time,
+		r.graduation_year,
+		r.upload_path,
+		r.create_time,
+		r.update_time, r.status
+		from
+		resume_info r
+		where r.status>0
+		and
+		r.id=#{id}
+	</select>
+
+	<select id="queryResumeInfos" parameterType="Map" resultMap="resumeInfoMap">
+		select r.id, r.member_id,
+		r.resume_name, r.avatar,
+		r.sex, r.major,
+		r.diploma,
+		r.graduation_time,
+		r.graduation_year,
+		r.upload_path,
+		r.create_time,
+		r.update_time, r.status
+		from
+		resume_info r
+		where r.status>0
+		<if test="memberId!=null">
+			and r.member_id=#{memberId}
+		</if>
+		<if test="ids!=null">
+			and r.id in (${ids})
+		</if>
+	</select>
+
+</mapper>

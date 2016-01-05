@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dophin.dao.ResumeCustomDAO">
+
+	<resultMap type="ResumeCustomDTO" id="resumeCustomMap">
+		<id property="id" column="id" />
+		<result property="resumeId" column="resume_id" />
+		<result property="name" column="name" />
+		<result property="description" column="description" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<insert id="insertResumeCustom" parameterType="ResumeCustomDTO"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into resume_custom
+		(resume_id, name, description,
+		create_time, update_time, status) values
+		(#{resumeId}, #{name}, #{description}, now(), now(), 1)
+	</insert>
+
+	<update id="updateResumeCustom" parameterType="ResumeCustomDTO">
+		update
+		resume_custom set resume_id=#{resumeId}, name=#{name},
+		description=#{description}, update_time=now() where status>0 and id=#{id}
+	</update>
+
+	<update id="deleteResumeCustom" parameterType="int">
+		update
+		resume_custom set status=-1, update_time=now() where id=#{id} and
+		status>0
+	</update>
+
+	<select id="queryResumeCustom" parameterType="int"
+		resultMap="resumeCustomMap">
+		select id, resume_id, name, description, create_time,
+		update_time, status from resume_custom where status>0 and id=#{id}
+	</select>
+
+	<select id="queryResumeCustoms" parameterType="int"
+		resultMap="resumeCustomMap">
+		select id, resume_id, name, description, create_time,
+		update_time, status from resume_custom where status>0 and
+		resume_id=#{resumeId}
+	</select>
+
+</mapper>

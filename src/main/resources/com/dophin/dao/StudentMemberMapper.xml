@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dophin.dao.StudentMemberDAO">
+
+	<resultMap type="StudentInfoDTO" id="studentInfoMap">
+		<id property="id" column="id" />
+		<result property="memberId" column="member_id" />
+		<result property="demandPosition" column="demand_position" />
+		<result property="demandType" column="demand_type" />
+		<result property="demandIndustry" column="demand_industry" />
+		<result property="demandCity" column="demand_city" />
+		<result property="demandSalary" column="demand_salary" />
+		<result property="allowRecommend" column="isAllowRecommend" />
+		<result property="allowEmail" column="isAllowEmail" />
+		<result property="jobStatus" column="job_status" />
+		<result property="recommendEmail" column="recommend_email" />
+		<result property="recommendFrequency" column="recommend_frequency" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<insert id="insertStudentInfo" parameterType="StudentInfoDTO"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into student_info
+		(member_id, demand_position, demand_type, demand_industry,
+		demand_city, demand_salary, isAllowRecommend, isAllowEmail,
+		job_status, recommend_email, recommend_frequency, create_time,
+		update_time, status)
+		values (#{memberId}, #{demandPosition},
+		#{demandType},
+		#{demandIndustry}, #{demandCity}, #{demandSalary},
+		#{allowRecommend}, #{allowEmail}, #{jobStatus}, #{recommendEmail},
+		#{recommendFrequency}, now(), now(), 1)
+	</insert>
+
+	<update id="deleteStudentInfo" parameterType="Map">
+		update student_info set status=-1, update_time=now() where status>0
+		<if test="id!=null">
+			and id=#{id}
+		</if>
+		<if test="memberId!=null">
+			and member_id=#{memberId}
+		</if>
+	</update>
+
+	<update id="updateStudentInfo" parameterType="Map">
+		update student_info
+		set demand_position=#{demandPosition},
+		demand_type=#{demandType},
+		demand_industry=#{demandIndustry},demand_city=#{demandCity},demand_salary=#{demandSalary},isAllowRecommend=#{allowRecommend},
+		isAllowEmail=#{allowEmail},job_status=#{jobStatus},recommend_email=#{recommendEmail},recommend_frequency=#{recommendFrequency},
+		update_time=now()
+		where status>0 and member_id=#{memberId}
+	</update>
+
+	<select id="queryStudentInfo" parameterType="Map" resultMap="studentInfoMap">
+		select id, member_id, demand_position, demand_type, demand_industry,
+		demand_city, demand_salary, isAllowRecommend, isAllowEmail,
+		job_status, recommend_email, recommend_frequency, create_time,
+		update_time, status from student_info where
+		status>0
+		<if test="id!=null">
+			and id=#{id}
+		</if>
+		<if test="memberId!=null">
+			and member_id=#{memberId}
+		</if>
+	</select>
+
+</mapper>
